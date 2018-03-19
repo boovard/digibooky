@@ -18,4 +18,7 @@ public class PersonRepository {
     public Map<UUID, Person> getPersonRepository() {
         return Collections.unmodifiableMap(personRepository);
     }
+
+    public void addPerson(Person testAdmin) {
+    }
 }
