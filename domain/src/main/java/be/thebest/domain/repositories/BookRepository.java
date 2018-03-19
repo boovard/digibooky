@@ -13,6 +13,10 @@ public class BookRepository {
         this.bookRepository = new HashMap<>();
     }
 
+    public void addBookToRepository(Book book) {
+        bookRepository.put(book.getIsbn(), book);
+    }
+
     public Map<String, Book> getBookRepository() {
         return Collections.unmodifiableMap(bookRepository);
     }
