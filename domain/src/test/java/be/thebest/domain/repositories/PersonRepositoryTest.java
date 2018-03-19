@@ -33,7 +33,7 @@ public class PersonRepositoryTest {
     @Test
     @Ignore
     public void addMember_whenGivenAllDetails_shouldAddMemberToRepo() {
-        testRepo.addMember("Tolkien", "John", "j.r.r.tolkien@gmail.com");
+        //testRepo.addMember("Tolkien", "John", "j.r.r.tolkien@gmail.com");
     }
 
 }
