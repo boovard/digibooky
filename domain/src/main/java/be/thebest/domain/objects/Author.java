@@ -1,4 +1,4 @@
-package be.thebest.domain;
+package be.thebest.domain.objects;
 
 public class Author {
     private String lastName;
@@ -8,6 +8,8 @@ public class Author {
         this.lastName = lastName;
         this.firstName = firstName;
     }
+
+
 
     public String getLastName() {
         return lastName;

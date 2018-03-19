@@ -1,4 +1,4 @@
-package be.thebest.domain;
+package be.thebest.domain.objects;
 
 public class Book {
     private String isbn;
