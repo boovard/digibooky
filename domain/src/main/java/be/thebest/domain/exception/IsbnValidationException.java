@@ -1,4 +1,4 @@
-package be.thebest.domain.Exception;
+package be.thebest.domain.exception;
 
 public class IsbnValidationException extends IllegalArgumentException {
 

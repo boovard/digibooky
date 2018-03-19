@@ -1,4 +1,4 @@
-package be.thebest.domain.Exception;
+package be.thebest.domain.exception;
 
 public class PersonNotFoundException extends IllegalArgumentException {
 
