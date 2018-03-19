@@ -1,4 +1,4 @@
-package be.thebest.domain.objects.Persons;
+package be.thebest.domain.objects.persons;
 
 import java.util.UUID;
 
@@ -23,7 +23,7 @@ public class Member extends Person {
         return inss;
     }
 
-    public be.thebest.domain.objects.Persons.Address getAddress() {
+    public be.thebest.domain.objects.persons.Address getAddress() {
         return address;
     }
 }
