@@ -1,7 +1,7 @@
 package be.thebest.domain.objects;
 
 
-import be.thebest.domain.objects.Persons.Person;
+import be.thebest.domain.objects.persons.Person;
 
 import java.time.LocalDate;
 
