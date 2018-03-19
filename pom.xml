@@ -6,9 +6,50 @@
 
     <groupId>be.thebest</groupId>
     <artifactId>digibooky</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <dependencyManagement></dependencyManagement>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.9.RELEASE</version>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <modules>
+        <module>api</module>
+        <module>service</module>
+        <module>domain</module>
+        <module>jar</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>be.thebest</groupId>
+                <artifactId>api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+                <dependency>
+                <groupId>be.thebest</groupId>
+                <artifactId>service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+                <dependency>
+                <groupId>be.thebest</groupId>
+                <artifactId>domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+                <dependency>
+                <groupId>be.thebest</groupId>
+                <artifactId>interfaces</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
