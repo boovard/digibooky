@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
 public class PersonRepositoryTest {
-    PersonRepository testRepo;
+    private PersonRepository testRepo;
 
     @Before
     public void setUp() {
@@ -20,13 +20,12 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    public void addPerson_whenAnyPerson_shouldAddNewPersonToHashMap() {
+    public void addPerson_whenAnyPerson_shouldAddNewPersonToHashMapWithUUIDAsKey() {
         UUID testId = UUID.randomUUID();
         Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com");
 
         testRepo.addPerson(testAdmin);
         assertThat(testRepo.getPersonRepository()).contains(entry(testId, testAdmin));
-
     }
 
 }
