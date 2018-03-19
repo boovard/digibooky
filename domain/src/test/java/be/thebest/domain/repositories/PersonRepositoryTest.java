@@ -1,9 +1,11 @@
 package be.thebest.domain.repositories;
 
 import be.thebest.domain.objects.persons.Admin;
+import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.objects.persons.Person;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.UUID;
@@ -26,6 +28,12 @@ public class PersonRepositoryTest {
 
         testRepo.addPerson(testAdmin);
         assertThat(testRepo.getPersonRepository()).contains(entry(testId, testAdmin));
+    }
+
+    @Test
+    @Ignore
+    public void addMember_whenGivenAllDetails_shouldAddMemberToRepo() {
+        testRepo.addMember("Tolkien", "John", "j.r.r.tolkien@gmail.com");
     }
 
 }
