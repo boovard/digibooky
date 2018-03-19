@@ -1,6 +1,8 @@
 package be.thebest.domain;
 
 
+import be.thebest.domain.Persons.Person;
+
 import java.time.LocalDate;
 
 public class Lending {
