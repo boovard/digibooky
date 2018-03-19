@@ -28,6 +28,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Internal Dependencies -->
             <dependency>
                 <groupId>be.thebest</groupId>
                 <artifactId>api</artifactId>
@@ -70,6 +71,5 @@
             <version>3.9.1</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 </project>
