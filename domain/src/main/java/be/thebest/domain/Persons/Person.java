@@ -9,10 +9,11 @@ public abstract class Person {
     private String email;
     private UUID uniqueID;
 
-    public Person(String lastName, String firstName, String email) {
+    public Person(UUID uniqueID, String lastName, String firstName, String email) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
+        this.uniqueID = uniqueID;
     }
 
     public String getLastName() {
