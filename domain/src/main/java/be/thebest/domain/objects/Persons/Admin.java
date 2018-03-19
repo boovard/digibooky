@@ -1,8 +1,9 @@
-package be.thebest.domain.Persons;
+package be.thebest.domain.objects.Persons;
+
 
 import java.util.UUID;
 
-public class Admin extends Person{
+public class Admin extends Person {
 
 
     public Admin(UUID uniqueID, String lastName, String firstName, String email) {

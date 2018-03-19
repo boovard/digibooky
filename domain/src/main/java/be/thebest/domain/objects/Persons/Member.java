@@ -1,4 +1,4 @@
-package be.thebest.domain.Persons;
+package be.thebest.domain.objects.Persons;
 
 import java.util.UUID;
 
@@ -13,11 +13,17 @@ public class Member extends Person {
         this.address = address;
     }
 
+    public Member(String lastName, String email, UUID uniqueID, String inss, Address address) {
+        super(lastName, email, uniqueID);
+        this.inss = inss;
+        this.address = address;
+    }
+
     public String getInss() {
         return inss;
     }
 
-    public Address getAddress() {
+    public be.thebest.domain.objects.Persons.Address getAddress() {
         return address;
     }
 }

@@ -1,4 +1,4 @@
-package be.thebest.domain.Persons;
+package be.thebest.domain.objects.Persons;
 
 import java.util.UUID;
 
@@ -12,6 +12,12 @@ public abstract class Person {
     public Person(UUID uniqueID, String lastName, String firstName, String email) {
         this.lastName = lastName;
         this.firstName = firstName;
+        this.email = email;
+        this.uniqueID = uniqueID;
+    }
+
+    public Person(String lastName, String email, UUID uniqueID) {
+        this.lastName = lastName;
         this.email = email;
         this.uniqueID = uniqueID;
     }

@@ -1,4 +1,5 @@
-package be.thebest.domain.Persons;
+package be.thebest.domain.objects.Persons;
+
 
 import java.util.UUID;
 

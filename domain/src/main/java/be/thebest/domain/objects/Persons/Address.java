@@ -1,4 +1,4 @@
-package be.thebest.domain.Persons;
+package be.thebest.domain.objects.Persons;
 
 public class Address {
 
@@ -10,6 +10,15 @@ public class Address {
     public Address(String streetName, String houseNumber, String postCode, String city) {
         this.streetName = streetName;
         this.houseNumber = houseNumber;
+        this.postCode = postCode;
+        this.city = city;
+    }
+
+    public Address(String city) {
+        this.city = city;
+    }
+
+    public Address(String postCode, String city) {
         this.postCode = postCode;
         this.city = city;
     }
