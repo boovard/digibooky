@@ -1,5 +1,6 @@
 package be.thebest.domain.repositories;
 
+import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
 
 import java.util.Collections;
@@ -13,7 +14,7 @@ public class BookRepository {
         this.bookRepository = new HashMap<>();
     }
 
-    public void addBookToRepository(Book book) {
+    public void registerNewBook(Book book) {
         bookRepository.put(book.getIsbn(), book);
     }
 
@@ -25,11 +26,43 @@ public class BookRepository {
         return null;
     }
 
-    public String getBookDetails() {
+    public String getBookDetails(String isbn) {
         return null;
     }
 
-    public Book searchOnIsbn() {
+    public Book getBookByIsbn(String isbn) {
         return null;
+    }
+
+    public Book getBookByTitle(String title) {
+        return null;
+    }
+
+    public Book getBookByAuthor(String authorId) {
+        return null;
+    }
+
+    public Book updateBook(String title) {
+        return null;
+    }
+
+    public Book updateBook(Author author) {
+        return null;
+    }
+
+    public void deleteBook(String isbn) {
+
+    }
+
+    public void lendBook(String isbn) {
+
+    }
+
+    public void returnBook(String isbn) {
+
+    }
+
+    public void getOverdueBooks() {
+
     }
 }
