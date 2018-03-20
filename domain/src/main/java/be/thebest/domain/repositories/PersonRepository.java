@@ -34,10 +34,14 @@ public class PersonRepository {
     }
 
     public void addAdmin(String lastName, String firstName, String email) {
-
+        UUID uuid = UUID.randomUUID();
+        Admin admin = new Admin(uuid, lastName, firstName, email);
+        addPerson(admin);
     }
 
     public void addLibrarian(String lastName, String firstName, String email) {
-
+        UUID uuid = UUID.randomUUID();
+        Librarian librarian = new Librarian(uuid, lastName, firstName, email);
+        addPerson(librarian);
     }
 }
