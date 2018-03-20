@@ -34,6 +34,7 @@ public class PersonRepositoryTest {
     @Test
     public void addPerson_whenAnyPerson_shouldAddNewPersonToHashMapWithUUIDAsKey() {
         UUID testId = UUID.randomUUID();
+        //TODO change this after constructor change is pushed/pulled
         Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com", new HasNoAddress());
 
         testRepo.addPerson(testAdmin);
@@ -43,12 +44,31 @@ public class PersonRepositoryTest {
     @Test
     @Ignore
     public void addMember_whenGivenAllDetails_shouldAddThisMemberToRepo() {
-        //TODO change test when Member constructor changes
-//        testRepo.addMember("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen"));
-//        assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.r.r.tolkien@gmail.com");
-//        assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("John");
-//        assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Tolkien");
-//        assertThat(testRepo.getPersonRepository().get(testUUID).getUniqueID()).isEqualTo(testUUID);
+        testRepo.addMember("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen"));
+        assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.r.r.tolkien@gmail.com");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("John");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Tolkien");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getUniqueID()).isEqualTo(testUUID);
+    }
+
+    @Test
+    @Ignore
+    public void addLibrarian_whenGivenAllDetails_shouldAddThisLibrarianToRepo() {
+        testRepo.addLibrarian("Rowling", "Joanne", "j.k.rowling@pottermore.com");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.k.rowling@pottermore.com");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("Joanne");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Rowling");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getUniqueID()).isEqualTo(testUUID);
+    }
+
+    @Test
+    @Ignore
+    public void addAdmin_whenGivenAllDetails_shouldAddThisAdminToRepo() {
+        testRepo.addAdmin("Code", "Mike", "mike.code@gmail.com");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("mike.code@gmail.com");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("Mike");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Code");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getUniqueID()).isEqualTo(testUUID);
     }
 
 }
