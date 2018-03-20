@@ -10,23 +10,20 @@ import java.util.UUID;
 
 public class MemberTest {
 
-//    @Test
-//    public void memberBuilder_givenAMemberBuiltWithBuilder_returnsTheSameResultAsAPersonCreatedWithConstructor(){
-//        UUID testId = UUID.randomUUID();
-//        Address testAdress = new Address("5000","Namur");
-//        HasAddress hasAddress = new HasAddress();
-//        HasInss hasInss = new HasInss();
-////        hasAddress.setAddress(testAdress);
-//        Member memberWithConstructor = new Member(testId,"testINSS","Kat", "Kit", "kit.kat@test.com", testAdress);
-//        Person memberWithBuilder = new Member.MemberBuilder()
-//                .withUniqueID(testId)
-//                .withInss(hasInss,"testINSS")
-//                .withLastName("Kat")
-//                .withFirstName("Kit")
-//                .withEmail("kit.kat@test.com")
-//                .withAddress(hasAddress, testAdress)
-//                .build();
-//        Assertions.assertThat(memberWithBuilder).isEqualToComparingFieldByField(memberWithConstructor);
-//    }
+    @Test
+    public void memberBuilder_givenAMemberBuiltWithBuilder_returnsTheSameResultAsAPersonCreatedWithConstructor(){
+        UUID testId = UUID.randomUUID();
+        Address testAdress = new Address("5000","Namur");
+        Member memberWithConstructor = new Member(testId,"testINSS","Kat", "Kit", "kit.kat@test.com", testAdress);
+        Person memberWithBuilder = new Member.MemberBuilder()
+                .withUniqueID(testId)
+                .withInss("testINSS")
+                .withLastName("Kat")
+                .withFirstName("Kit")
+                .withEmail("kit.kat@test.com")
+                .withAddress(testAdress)
+                .build();
+        Assertions.assertThat(memberWithBuilder).isEqualToComparingFieldByField(memberWithConstructor);
+    }
 
 }
