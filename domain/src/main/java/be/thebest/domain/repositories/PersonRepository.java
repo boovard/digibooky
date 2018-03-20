@@ -22,36 +22,36 @@ public class PersonRepository {
         return Collections.unmodifiableMap(personRepository);
     }
 
-    public Map<UUID, Person> getMembersFromRepository(){
-        Map<UUID, Person> memberRepository = new HashMap<>();
+    public Map<UUID, Member> getMembersFromRepository(){
+        Map<UUID, Member> memberRepository = new HashMap<>();
         for (Person person : personRepository.values()){
             if (person instanceof Member){
-                memberRepository.put(person.getUniqueID(),person);
+                memberRepository.put(person.getUniqueID(),(Member)person);
             }
         }
         return memberRepository;
     }
 
-    public void addPerson(Person person) {
-        personRepository.put(person.getUniqueID(), person);
+    public Person addPerson(Person person) {
+        return personRepository.put(person.getUniqueID(), person);
     }
 
-    public void addMember(String inss, String lastName, String firstName, String eMailAddress, Address address) {
+    public Member addMember(String inss, String lastName, String firstName, String eMailAddress, Address address) {
         UUID uuid = UUID.randomUUID();
         Member member = new Member(uuid, inss, lastName, firstName, eMailAddress, address);
-        addPerson(member);
+        return (Member)addPerson(member);
     }
 
 
-    public void addAdmin(String lastName, String firstName, String email) {
+    public Admin addAdmin(String lastName, String firstName, String email) {
         UUID uuid = UUID.randomUUID();
         Admin admin = new Admin(uuid, lastName, firstName, email);
-        addPerson(admin);
+        return (Admin)addPerson(admin);
     }
 
-    public void addLibrarian(String lastName, String firstName, String email) {
+    public Librarian addLibrarian(String lastName, String firstName, String email) {
         UUID uuid = UUID.randomUUID();
         Librarian librarian = new Librarian(uuid, lastName, firstName, email);
-        addPerson(librarian);
+        return (Librarian)addPerson(librarian);
     }
 }

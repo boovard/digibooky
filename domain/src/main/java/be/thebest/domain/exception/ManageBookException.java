@@ -2,7 +2,7 @@ package be.thebest.domain.exception;
 
 public class ManageBookException extends RuntimeException {
 
-    public ManageBookException() {
-        super();
+    public ManageBookException(String errorMessage) {
+        super(errorMessage);
     }
 }
