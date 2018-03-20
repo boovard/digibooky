@@ -39,7 +39,6 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    @Ignore
     public void addPerson_whenAnyPerson_shouldAddNewPersonToHashMapWithUUIDAsKey() {
         UUID testId = UUID.randomUUID();
         Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com");
@@ -48,6 +47,7 @@ public class PersonRepositoryTest {
     }
 
     @Test
+    @Ignore
     public void addMember_whenGivenAllDetails_shouldAddThisMemberToRepo() {
         testRepo.addMember("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen"));
         assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.r.r.tolkien@gmail.com");
