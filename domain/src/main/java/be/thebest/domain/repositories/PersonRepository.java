@@ -20,6 +20,7 @@ public class PersonRepository {
     }
 
     public void addPerson(Person person) {
+        personRepository.put(person.getUniqueID(), person);
     }
 
     public void addMember(String inss, String lastName, String firstName, String eMailAddress, Address address) {

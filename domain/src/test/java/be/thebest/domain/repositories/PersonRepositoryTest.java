@@ -1,8 +1,7 @@
 package be.thebest.domain.repositories;
 
-import be.thebest.domain.objects.persons.Address;
-import be.thebest.domain.objects.persons.Admin;
-import be.thebest.domain.objects.persons.Person;
+import be.thebest.domain.objects.persons.*;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -34,7 +33,7 @@ public class PersonRepositoryTest {
     @Test
     public void addPerson_whenAnyPerson_shouldAddNewPersonToHashMapWithUUIDAsKey() {
         UUID testId = UUID.randomUUID();
-        Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com");
+        Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com", new HasNoAddress());
 
         testRepo.addPerson(testAdmin);
         assertThat(testRepo.getPersonRepository()).contains(entry(testId, testAdmin));
