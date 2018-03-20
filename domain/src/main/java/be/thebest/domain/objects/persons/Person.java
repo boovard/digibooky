@@ -9,23 +9,22 @@ public abstract class Person {
     private String email;
     private UUID uniqueID;
     private Addressable addressable;
+    private INSSable inssable;
 
     public Person(){
     }
 
-    public Person(UUID uniqueID, String lastName, String firstName, String email, Addressable addressable) {
+    public Person(UUID uniqueID, String lastName, String firstName, String email) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.uniqueID = uniqueID;
-        this.addressable = addressable;
     }
 
-    public Person(UUID uniqueID, String lastName, String email, Addressable addressable) {
+    public Person(UUID uniqueID, String lastName, String email) {
         this.lastName = lastName;
         this.email = email;
         this.uniqueID = uniqueID;
-        this.addressable = addressable;
     }
 
     public Address getAddress(){
@@ -38,6 +37,14 @@ public abstract class Person {
 
     public void setAddress(Address address){
         addressable.setAddress(address);
+    }
+
+    public void setInssable(INSSable inssable) {
+        this.inssable = inssable;
+    }
+
+    public void setInss(String inss){
+        inssable.setInns(inss);
     }
 
     public String getLastName() {
@@ -78,8 +85,15 @@ public abstract class Person {
         private String email;
         private UUID uniqueID;
         private Addressable addressable;
+        private INSSable inssable;
 
         public abstract Person build();
+
+        public T withInss(INSSable inssable, String inss){
+            this.inssable = inssable;
+            inssable.setInns(inss);
+            return (T) this;
+        }
 
         public T withLastName(String lastName){
             this.lastName = lastName;
@@ -129,6 +143,14 @@ public abstract class Person {
 
         public Addressable getAddressable() {
             return addressable;
+        }
+
+        public String getInss(){
+            return inssable.getInss();
+        }
+
+        public INSSable getInssable() {
+            return inssable;
         }
     }
 }
