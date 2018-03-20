@@ -1,9 +1,6 @@
 package be.thebest.domain.repositories;
 
-import be.thebest.domain.objects.persons.Admin;
-import be.thebest.domain.objects.persons.Librarian;
-import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.objects.persons.Person;
+import be.thebest.domain.objects.persons.*;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,7 +22,7 @@ public class PersonRepository {
     public void addPerson(Person person) {
     }
 
-    public void addMember(Member member) {
+    public void addMember(String inss, String lastName, String firstName, String eMailAddress, Address address) {
 
     }
 

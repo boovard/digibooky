@@ -1,5 +1,6 @@
 package be.thebest.domain.repositories;
 
+import be.thebest.domain.objects.persons.Address;
 import be.thebest.domain.objects.persons.Admin;
 import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.objects.persons.Person;
@@ -27,13 +28,15 @@ public class PersonRepositoryTest {
         Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com");
 
         testRepo.addPerson(testAdmin);
-        //assertThat(testRepo.getPersonRepository()).contains(entry(testId, testAdmin));
+        assertThat(testRepo.getPersonRepository()).contains(entry(testId, testAdmin));
     }
 
     @Test
     @Ignore
     public void addMember_whenGivenAllDetails_shouldAddMemberToRepo() {
-        //testRepo.addMember("Tolkien", "John", "j.r.r.tolkien@gmail.com");
+//        Member testMember = new Member()
+//        testRepo.addMember("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen"));
+//        assertThat(testRepo.getPersonRepository()).c
     }
 
 }

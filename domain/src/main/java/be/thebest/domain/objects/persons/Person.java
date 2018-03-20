@@ -16,7 +16,7 @@ public abstract class Person {
         this.uniqueID = uniqueID;
     }
 
-    public Person(String lastName, String email, UUID uniqueID) {
+    public Person(UUID uniqueID, String lastName, String email) {
         this.lastName = lastName;
         this.email = email;
         this.uniqueID = uniqueID;

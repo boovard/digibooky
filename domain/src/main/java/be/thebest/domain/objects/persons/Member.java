@@ -13,8 +13,8 @@ public class Member extends Person {
         this.address = address;
     }
 
-    public Member(String lastName, String email, UUID uniqueID, String inss, Address address) {
-        super(lastName, email, uniqueID);
+    public Member(UUID uniqueID, String inss, String lastName, String email, Address address) {
+        super(uniqueID, lastName, email);
         this.inss = inss;
         this.address = address;
     }
@@ -23,7 +23,7 @@ public class Member extends Person {
         return inss;
     }
 
-    public be.thebest.domain.objects.persons.Address getAddress() {
+    public Address getAddress() {
         return address;
     }
 }
