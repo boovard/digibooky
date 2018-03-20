@@ -41,9 +41,7 @@ public class PersonRepositoryTest {
     @Test
     public void addPerson_whenAnyPerson_shouldAddNewPersonToHashMapWithUUIDAsKey() {
         UUID testId = UUID.randomUUID();
-        //TODO change this after constructor change is pushed/pulled
-        Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com", new HasNoAddress());
-
+        Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com");
         testRepo.addPerson(testAdmin);
         assertThat(testRepo.getPersonRepository()).contains(entry(testId, testAdmin));
     }

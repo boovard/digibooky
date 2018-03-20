@@ -19,12 +19,18 @@ public class PersonRepository {
         return Collections.unmodifiableMap(personRepository);
     }
 
+    public Map<UUID, Person> getMemebersFromRepository(){
+        return null;
+    }
+
     public void addPerson(Person person) {
         personRepository.put(person.getUniqueID(), person);
     }
 
     public void addMember(String inss, String lastName, String firstName, String eMailAddress, Address address) {
-
+        UUID uuid = UUID.randomUUID();
+        Member member = new Member(uuid, inss, lastName, firstName, eMailAddress, address);
+        addPerson(member);
     }
 
     public void addAdmin(String lastName, String firstName, String email) {
