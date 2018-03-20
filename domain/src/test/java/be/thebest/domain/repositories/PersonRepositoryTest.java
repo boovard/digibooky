@@ -23,6 +23,13 @@ public class PersonRepositoryTest {
     private PersonRepository testRepo;
     private UUID testUUID;
 
+    private void addFiveUsers(PersonRepository repo) {
+        repo.addMember("147258", "Van Reeth", "Leander", "yolo@swag.com", new Address("2800", "Mechelen"));
+        repo.addMember("456789", "Bouvy", "Simon", "cappy@odysey.com", new Address("1000", "New Donk City"));
+        repo.addMember("789156", "Hermans", "Dirk", "diher@81.com", new Address("Diher", "81", "8181", "Dihertown"));
+        repo.addMember("164978", "Block", "Marie-Lynne", "machine@learning.com", new Address("4659", "Middle of nowhere"));
+    }
+
     @Before
     public void setUp() {
         PowerMockito.mockStatic(UUID.class);
@@ -69,6 +76,12 @@ public class PersonRepositoryTest {
         assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("Mike");
         assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Code");
         assertThat(testRepo.getPersonRepository().get(testUUID).getUniqueID()).isEqualTo(testUUID);
+    }
+
+    @Test
+    @Ignore
+    public void getPersonRepository_whenFivePeopleInRepo_shouldReturnCollectionWithFivePeople() {
+
     }
 
 }
