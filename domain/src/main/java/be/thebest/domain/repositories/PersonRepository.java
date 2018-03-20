@@ -19,7 +19,7 @@ public class PersonRepository {
         return Collections.unmodifiableMap(personRepository);
     }
 
-    public Map<UUID, Person> getMemebersFromRepository(){
+    public Map<UUID, Person> getMembersFromRepository(){
         return null;
     }
 

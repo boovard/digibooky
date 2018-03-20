@@ -1,9 +1,7 @@
 package be.thebest.domain.repositories;
 
 import be.thebest.domain.objects.persons.*;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -22,11 +20,16 @@ import static org.powermock.api.mockito.PowerMockito.when;
 public class PersonRepositoryTest {
     private PersonRepository testRepo;
 
-    private void addFourUsers(PersonRepository repo) {
+    private void addFourMembers(PersonRepository repo) {
         repo.addMember("147258", "Van Reeth", "Leander", "yolo@swag.com", new Address("2800", "Mechelen"));
         repo.addMember("456789", "Bouvy", "Simon", "cappy@odysey.com", new Address("1000", "New Donk City"));
         repo.addMember("789156", "Hermans", "Dirk", "diher@81.com", new Address("Diher", "81", "8181", "Dihertown"));
         repo.addMember("164978", "Block", "Marie-Lynne", "machine@learning.com", new Address("4659", "Middle of nowhere"));
+    }
+
+    private void addFourMembersAndAnAdmin(PersonRepository repo) {
+        addFourMembers(repo);
+        repo.addAdmin("Code", "Mike", "mike.code@gmail.com");
     }
 
     @Before
@@ -83,8 +86,15 @@ public class PersonRepositoryTest {
 
     @Test
     public void getPersonRepository_whenFourPeopleInRepo_shouldReturnCollectionWithAllFourPeople() {
-        addFourUsers(testRepo);
+        addFourMembers(testRepo);
         assertThat(testRepo.getPersonRepository()).hasSize(4);
     }
 
+    @Test
+    public void getMembersFromRepository_shouldReturnCollectionWithOnlyTheMembers() {
+        addFourMembersAndAnAdmin(testRepo);
+        for (UUID key : testRepo.getMembersFromRepository().keySet()) {
+            assertThat(testRepo.getMembersFromRepository().get(key).getLastName()).isNotEqualTo("Code");
+        }
+    }
 }
