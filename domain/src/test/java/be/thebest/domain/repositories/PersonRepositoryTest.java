@@ -17,11 +17,10 @@ import static org.assertj.core.api.Assertions.entry;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 
-@PrepareForTest({UUID.class})
+@PrepareForTest({UUID.class, PersonRepository.class})
 @RunWith(PowerMockRunner.class)
 public class PersonRepositoryTest {
     private PersonRepository testRepo;
-    private UUID testUUID;
 
     private void addFourUsers(PersonRepository repo) {
         repo.addMember("147258", "Van Reeth", "Leander", "yolo@swag.com", new Address("2800", "Mechelen"));
@@ -32,9 +31,6 @@ public class PersonRepositoryTest {
 
     @Before
     public void setUp() {
-        PowerMockito.mockStatic(UUID.class);
-        testUUID = new UUID(56, 53);
-        when(UUID.randomUUID()).thenReturn(testUUID);
         testRepo = new PersonRepository();
     }
 
@@ -47,8 +43,11 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    @Ignore
     public void addMember_whenGivenAllDetails_shouldAddThisMemberToRepo() {
+        final String id = "493410b3-dd0b-4b78-97bf-289f50f6e74f";
+        UUID testUUID = UUID.fromString(id);
+        PowerMockito.mockStatic(UUID.class);
+        when(UUID.randomUUID()).thenReturn(testUUID);
         testRepo.addMember("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen"));
         assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.r.r.tolkien@gmail.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("John");
@@ -59,6 +58,10 @@ public class PersonRepositoryTest {
     @Test
     @Ignore
     public void addLibrarian_whenGivenAllDetails_shouldAddThisLibrarianToRepo() {
+        final String id = "493410b3-dd0b-4b78-97bf-289f50f6e74f";
+        UUID testUUID = UUID.fromString(id);
+        PowerMockito.mockStatic(UUID.class);
+        when(UUID.randomUUID()).thenReturn(testUUID);
         testRepo.addLibrarian("Rowling", "Joanne", "j.k.rowling@pottermore.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.k.rowling@pottermore.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("Joanne");
@@ -69,6 +72,10 @@ public class PersonRepositoryTest {
     @Test
     @Ignore
     public void addAdmin_whenGivenAllDetails_shouldAddThisAdminToRepo() {
+        final String id = "493410b3-dd0b-4b78-97bf-289f50f6e74f";
+        UUID testUUID = UUID.fromString(id);
+        PowerMockito.mockStatic(UUID.class);
+        when(UUID.randomUUID()).thenReturn(testUUID);
         testRepo.addAdmin("Code", "Mike", "mike.code@gmail.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("mike.code@gmail.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("Mike");
