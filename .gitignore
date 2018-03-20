@@ -20,7 +20,10 @@
 .idea/**/uiDesigner.xml
 
 # maven
-target/
+domain/target/
+service/target/
+jar/target/
+api/target/
 
 # CMake
 cmake-build-debug/

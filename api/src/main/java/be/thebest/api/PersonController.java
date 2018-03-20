@@ -1,8 +1,10 @@
 package be.thebest.api;
 
 import be.thebest.service.PersonService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
@@ -25,6 +27,7 @@ public class PersonController {
     }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public List<MemberDto> getMembers() {
         return personService.getMembers().stream()
                 .map(memberMapper::toDto)
