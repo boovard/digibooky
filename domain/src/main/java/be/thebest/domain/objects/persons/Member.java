@@ -5,44 +5,36 @@ import java.util.UUID;
 public class Member extends Person {
 
     private String inss;
-    private Address address;
 
-    public Member(){
+    public Member() {
     }
 
-    public Member(UUID uniqueID, String inss, String lastName, String firstName, String email, Address address) {
-        super(uniqueID, lastName, firstName, email);
+    public Member(UUID uniqueID, String inss, String lastName, String firstName, String email, HasAddress hasAddress, Address address) {
+        super(uniqueID, lastName, firstName, email, hasAddress);
+        this.setAddress(address);
         this.inss = inss;
-        this.address = address;
     }
 
-    public Member(String lastName, String email, UUID uniqueID, String inss, Address address) {
-        super(lastName, email, uniqueID);
+    public Member(UUID uniqueID, String inss, String lastName, String email, HasAddress hasAddress, Address address) {
+        super(uniqueID, lastName, email, hasAddress);
+        this.setAddress(address);
         this.inss = inss;
-        this.address = address;
     }
 
     public String getInss() {
         return inss;
     }
 
+
     public void setInss(String inss) {
         this.inss = inss;
     }
 
-    public Address getAddress() {
-        return address;
-    }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public static class MemberBuilder extends PersonBuilder{
+    public static class MemberBuilder extends PersonBuilder<MemberBuilder> {
         private String inss;
-        private Address address;
 
-        public static MemberBuilder member(){
+        public static MemberBuilder member() {
             return new MemberBuilder();
         }
 
@@ -54,17 +46,13 @@ public class Member extends Person {
             member.setFirstName(this.getFirstName());
             member.setEmail(this.getEmail());
             member.setInss(inss);
-            member.setAddress(address);
+            member.setAddressable(this.getAddressable());
+            member.setAddress(this.getAddress());
             return member;
         }
 
-        public MemberBuilder withInss(String inss){
+        public MemberBuilder withInss(String inss) {
             this.inss = inss;
-            return this;
-        }
-
-        public MemberBuilder withAddress(Address address){
-            this.address = address;
             return this;
         }
     }

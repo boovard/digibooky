@@ -8,8 +8,8 @@ public class Librarian extends Person {
     public Librarian(){
     }
 
-    public Librarian(UUID uniqueID, String lastName, String firstName, String email) {
-        super(uniqueID, lastName, firstName, email);
+    public Librarian(UUID uniqueID, String lastName, String firstName, String email, HasNoAddress hasNoAddress) {
+        super(uniqueID, lastName, firstName, email, hasNoAddress);
     }
 
     public static class LibrarianBuilder extends PersonBuilder{

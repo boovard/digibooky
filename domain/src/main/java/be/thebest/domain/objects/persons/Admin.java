@@ -8,8 +8,8 @@ public class Admin extends Person {
     public Admin(){
     }
 
-    public Admin(UUID uniqueID, String lastName, String firstName, String email) {
-        super(uniqueID, lastName, firstName, email);
+    public Admin(UUID uniqueID, String lastName, String firstName, String email, HasNoAddress hasNoAddress) {
+        super(uniqueID, lastName, firstName, email, hasNoAddress);
     }
 
     public static class AdminBuilder extends PersonBuilder{
