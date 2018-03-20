@@ -2,36 +2,42 @@ package be.thebest.domain.repositories;
 
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
+import com.sun.javafx.binding.StringFormatter;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.*;
 
+@Named
 public class BookRepository {
-    private Map<String, Book> bookRepository;
+    private Map<String, Book> books;
 
+    @Inject
     public BookRepository() {
-        this.bookRepository = new HashMap<>();
+        this.books = new HashMap<>();
     }
 
     public void registerNewBook(Book book) {
-        bookRepository.put(book.getIsbn(), book);
-    }
-
-    public Map<String, Book> getBookRepository() {
-        return Collections.unmodifiableMap(bookRepository);
+        books.put(book.getIsbn(), book);
     }
 
     public Map<String, Book> getAllBooks() {
-        return null;
+        return Collections.unmodifiableMap(books);
     }
 
     public String getBookDetails(String isbn) {
-        return null;
+        Book book = getBookByIsbn(isbn);
+        return String.format("title: %s \n Author: %s %s \n ISBN: %s",
+            book.getTitle(), book.getAuthor().getLastName(), book.getAuthor().getFirstName() , isbn);
     }
 
     public Book getBookByIsbn(String isbn) {
-        return null;
+        return books.get(isbn);
+    }
+
+    public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
+        List<Book> booksFound = new ArrayList<>();
+        return booksFound;
     }
 
     public Book getBookByTitle(String title) {

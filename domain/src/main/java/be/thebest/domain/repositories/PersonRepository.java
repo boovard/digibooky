@@ -42,6 +42,7 @@ public class PersonRepository {
         addPerson(member);
     }
 
+
     public void addAdmin(String lastName, String firstName, String email) {
         UUID uuid = UUID.randomUUID();
         Admin admin = new Admin(uuid, lastName, firstName, email);
