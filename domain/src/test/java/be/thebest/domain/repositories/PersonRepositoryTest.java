@@ -85,9 +85,9 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    public void getPersonRepository_whenFourPeopleInRepo_shouldReturnCollectionWithAllFourPeople() {
+    public void getPersonRepository_whenFourPeopleInRepo_shouldReturnCollectionWithAllFourPeopleAndOriginalAdmin() {
         addFourMembers(testRepo);
-        assertThat(testRepo.getPersonRepository()).hasSize(4);
+        assertThat(testRepo.getPersonRepository()).hasSize(5);
     }
 
     @Test
@@ -95,6 +95,8 @@ public class PersonRepositoryTest {
         addFourMembersAndAnAdmin(testRepo);
         for (UUID key : testRepo.getMembersFromRepository().keySet()) {
             assertThat(testRepo.getMembersFromRepository().get(key).getLastName()).isNotEqualTo("Code");
+            assertThat(testRepo.getMembersFromRepository().get(key).getLastName()).isNotEqualTo("Deletinne");
         }
+        assertThat(testRepo.getMembersFromRepository()).hasSize(4);
     }
 }
