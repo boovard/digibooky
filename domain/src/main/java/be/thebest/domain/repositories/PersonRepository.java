@@ -13,6 +13,7 @@ public class PersonRepository {
 
     public PersonRepository() {
         this.personRepository = new HashMap<>();
+        addAdmin("Deletinne", "Niels", "niels.delestinne@switchfully.com");
     }
 
     public Map<UUID, Person> getPersonRepository() {
@@ -20,7 +21,13 @@ public class PersonRepository {
     }
 
     public Map<UUID, Person> getMembersFromRepository(){
-        return null;
+        Map<UUID, Person> memberRepository = new HashMap<>();
+        for (Person person : personRepository.values()){
+            if (person instanceof Member){
+                memberRepository.put(person.getUniqueID(),person);
+            }
+        }
+        return memberRepository;
     }
 
     public void addPerson(Person person) {
