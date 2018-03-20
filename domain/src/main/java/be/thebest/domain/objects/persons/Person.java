@@ -8,8 +8,6 @@ public abstract class Person {
     private String firstName;
     private String email;
     private UUID uniqueID;
-    private Addressable addressable;
-    private INSSable inssable;
 
     public Person(){
     }
@@ -25,26 +23,6 @@ public abstract class Person {
         this.lastName = lastName;
         this.email = email;
         this.uniqueID = uniqueID;
-    }
-
-    public Address getAddress(){
-        return addressable.getAddress();
-    }
-
-    public void setAddressable(Addressable addressable) {
-        this.addressable = addressable;
-    }
-
-    public void setAddress(Address address){
-        addressable.setAddress(address);
-    }
-
-    public void setInssable(INSSable inssable) {
-        this.inssable = inssable;
-    }
-
-    public void setInss(String inss){
-        inssable.setInns(inss);
     }
 
     public String getLastName() {
@@ -84,16 +62,8 @@ public abstract class Person {
         private String firstName;
         private String email;
         private UUID uniqueID;
-        private Addressable addressable;
-        private INSSable inssable;
 
         public abstract Person build();
-
-        public T withInss(INSSable inssable, String inss){
-            this.inssable = inssable;
-            inssable.setInns(inss);
-            return (T) this;
-        }
 
         public T withLastName(String lastName){
             this.lastName = lastName;
@@ -115,12 +85,6 @@ public abstract class Person {
             return (T) this;
         }
 
-        public T withAddress(Addressable addressable, Address address){
-            this.addressable = addressable;
-            addressable.setAddress(address);
-            return (T) this;
-        }
-
         public String getLastName() {
             return lastName;
         }
@@ -137,20 +101,5 @@ public abstract class Person {
             return uniqueID;
         }
 
-        public Address getAddress(){
-            return addressable.getAddress();
-        }
-
-        public Addressable getAddressable() {
-            return addressable;
-        }
-
-        public String getInss(){
-            return inssable.getInss();
-        }
-
-        public INSSable getInssable() {
-            return inssable;
-        }
     }
 }
