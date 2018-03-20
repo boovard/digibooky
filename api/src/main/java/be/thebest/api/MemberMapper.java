@@ -3,6 +3,9 @@ package be.thebest.api;
 import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.objects.persons.Person;
 
+import javax.inject.Named;
+
+@Named
 public class MemberMapper {
 
     public MemberDto toDto(Member member) {
