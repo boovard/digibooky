@@ -56,7 +56,6 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    @Ignore
     public void addLibrarian_whenGivenAllDetails_shouldAddThisLibrarianToRepo() {
         final String id = "493410b3-dd0b-4b78-97bf-289f50f6e74f";
         UUID testUUID = UUID.fromString(id);
@@ -70,7 +69,6 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    @Ignore
     public void addAdmin_whenGivenAllDetails_shouldAddThisAdminToRepo() {
         final String id = "493410b3-dd0b-4b78-97bf-289f50f6e74f";
         UUID testUUID = UUID.fromString(id);
