@@ -4,6 +4,7 @@ import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
 import com.sun.javafx.binding.StringFormatter;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.*;
 
@@ -11,6 +12,7 @@ import java.util.*;
 public class BookRepository {
     private Map<String, Book> books;
 
+    @Inject
     public BookRepository() {
         this.books = new HashMap<>();
     }
