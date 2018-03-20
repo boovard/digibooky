@@ -33,7 +33,7 @@ public class PersonRepositoryTest {
     @Before
     public void setUp() {
         PowerMockito.mockStatic(UUID.class);
-        testUUID = new  UUID(56, 53);
+        testUUID = new UUID(56, 53);
         when(UUID.randomUUID()).thenReturn(testUUID);
         testRepo = new PersonRepository();
     }
@@ -79,9 +79,9 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    @Ignore
-    public void getPersonRepository_whenFivePeopleInRepo_shouldReturnCollectionWithFivePeople() {
-
+    public void getPersonRepository_whenFivePeopleInRepo_shouldReturnCollectionWithAllFivePeople() {
+        addFiveUsers(testRepo);
+        assertThat(testRepo.getPersonRepository()).hasSize(5);
     }
 
 }
