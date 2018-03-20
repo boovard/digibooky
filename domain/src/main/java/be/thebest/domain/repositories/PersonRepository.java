@@ -33,11 +33,11 @@ public class PersonRepository {
         addPerson(member);
     }
 
-    public void addAdmin(Admin admin) {
+    public void addAdmin(String lastName, String firstName, String email) {
 
     }
 
-    public void addLibrarian(Librarian librarian) {
+    public void addLibrarian(String lastName, String firstName, String email) {
 
     }
 }
