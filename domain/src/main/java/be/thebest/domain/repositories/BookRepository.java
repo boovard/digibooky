@@ -4,8 +4,10 @@ import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
 import com.sun.javafx.binding.StringFormatter;
 
+import javax.inject.Named;
 import java.util.*;
 
+@Named
 public class BookRepository {
     private Map<String, Book> books;
 
@@ -17,7 +19,7 @@ public class BookRepository {
         books.put(book.getIsbn(), book);
     }
 
-    public Map<String, Book> getBookRepository() {
+    public Map<String, Book> getAllBooks() {
         return Collections.unmodifiableMap(books);
     }
 
