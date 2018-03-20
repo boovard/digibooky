@@ -1,9 +1,6 @@
 package be.thebest.domain.repositories;
 
-import be.thebest.domain.objects.persons.Admin;
-import be.thebest.domain.objects.persons.Librarian;
-import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.objects.persons.Person;
+import be.thebest.domain.objects.persons.*;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,17 +20,18 @@ public class PersonRepository {
     }
 
     public void addPerson(Person person) {
+        personRepository.put(person.getUniqueID(), person);
     }
 
-    public void addMember(Member member) {
-
-    }
-
-    public void addAdmin(Admin admin) {
+    public void addMember(String inss, String lastName, String firstName, String eMailAddress, Address address) {
 
     }
 
-    public void addLibrarian(Librarian librarian) {
+    public void addAdmin(String lastName, String firstName, String email) {
+
+    }
+
+    public void addLibrarian(String lastName, String firstName, String email) {
 
     }
 }
