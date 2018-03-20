@@ -21,7 +21,6 @@
 
 # maven
 target/
-*.lst
 
 # CMake
 cmake-build-debug/
