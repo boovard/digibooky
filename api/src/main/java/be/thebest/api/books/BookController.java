@@ -1,4 +1,4 @@
-package be.thebest.api;
+package be.thebest.api.books;
 
 import be.thebest.domain.objects.Book;
 import be.thebest.service.BookService;
@@ -24,7 +24,7 @@ public class BookController {
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<Book> getAllBooks() {
-        //return BookDto;
+        return null;
     }
 
 }
