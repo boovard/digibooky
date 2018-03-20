@@ -168,7 +168,7 @@ const VIEW = {
                       <img class="card-img-top img-fluid" src="https://picsum.photos/150/150/?random${imgCounter++}" alt="${book.title}">
                       <div class="card-body">
                         <h4 class="card-title">${book.title}</h4>
-                        <h5 class="card-subtitle mb-2 text-muted">${book.author.firstName} ${book.author.lastName}</h5>
+                        <h5 class="card-subtitle mb-2 text-muted">${book.authorDto.firstName} ${book.authorDto.lastName}</h5>
                         <p class="card-text">ISBN: ${book.isbn}</p>
                       </div>
                     </div>
