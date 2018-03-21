@@ -2,6 +2,9 @@ package be.thebest.api;
 
 import be.thebest.domain.objects.persons.Address;
 
+import javax.inject.Named;
+
+@Named
 public class AddressMapper {
 
     public AddressDto toDto(Address address) {
