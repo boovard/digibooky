@@ -1,5 +1,7 @@
 package be.thebest.api;
 
+import be.thebest.api.admins.AdminMapper;
+import be.thebest.api.librarians.LibrarianMapper;
 import be.thebest.service.PersonService;
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,6 +19,8 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 public class PersonControllerTest {
     PersonService mockService;
     MemberMapper mockMapper;
+    AdminMapper adminMapper;
+    LibrarianMapper librarianMapper;
     PersonController controller;
 
 
@@ -24,7 +28,7 @@ public class PersonControllerTest {
     public void setUp() {
         mockService = Mockito.mock(PersonService.class);
         mockMapper = Mockito.mock(MemberMapper.class);
-        controller = new PersonController(mockService, mockMapper);
+        controller = new PersonController(mockService, mockMapper, adminMapper, librarianMapper);
     }
 
     @Test
