@@ -2,10 +2,7 @@ package be.thebest.api;
 
 import be.thebest.service.PersonService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
@@ -26,12 +23,18 @@ public class PersonController {
         this.memberMapper = memberMapper;
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/members", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<MemberDto> getMembers() {
         return personService.getMembers().stream()
                 .map(memberMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public MemberDto addMember(MemberDto memberDto) {
+        return null;
     }
 
 

@@ -26,6 +26,7 @@ public class PersonService {
     }
 
     public Map<UUID, Person> getAllPeople() {
+        //TODO is this method necessary?
         return repository.getPersonRepository();
     }
 
@@ -54,6 +55,6 @@ public class PersonService {
     }
 
     private void verifyPermission() {
-        //TODO to be implemented
+        //Asked Niels: can be ignored
     }
 }
