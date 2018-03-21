@@ -21,15 +21,15 @@ public class PersonRepositoryTest {
     private PersonRepository testRepo;
 
     private void addFourMembers(PersonRepository repo) {
-        repo.addMember("147258", "Van Reeth", "Leander", "yolo@swag.com", new Address("2800", "Mechelen"));
-        repo.addMember("456789", "Bouvy", "Simon", "cappy@odysey.com", new Address("1000", "New Donk City"));
-        repo.addMember("789156", "Hermans", "Dirk", "diher@81.com", new Address("Diher", "81", "8181", "Dihertown"));
-        repo.addMember("164978", "Block", "Marie-Lynne", "machine@learning.com", new Address("4659", "Middle of nowhere"));
+        repo.addMember(new Member("147258", "Van Reeth", "Leander", "yolo@swag.com", new Address("2800", "Mechelen")));
+        repo.addMember(new Member("456789", "Bouvy", "Simon", "cappy@odysey.com", new Address("1000", "New Donk City")));
+        repo.addMember(new Member("789156", "Hermans", "Dirk", "diher@81.com", new Address("Diher", "81", "8181", "Dihertown")));
+        repo.addMember(new Member("164978", "Block", "Marie-Lynne", "machine@learning.com", new Address("4659", "Middle of nowhere")));
     }
 
     private void addFourMembersAndAnAdmin(PersonRepository repo) {
         addFourMembers(repo);
-        repo.addAdmin("Code", "Mike", "mike.code@gmail.com");
+        repo.addAdmin(new Admin("Code", "Mike", "mike.code@gmail.com"));
     }
 
     @Before
@@ -38,20 +38,12 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    public void addPerson_whenAnyPerson_shouldAddNewPersonToHashMapWithUUIDAsKey() {
-        UUID testId = UUID.randomUUID();
-        Person testAdmin = new Admin(testId, "Code", "Mike", "mike.code@gmail.com");
-        testRepo.addPerson(testAdmin);
-        assertThat(testRepo.getPersonRepository()).contains(entry(testId, testAdmin));
-    }
-
-    @Test
     public void addMember_whenGivenAllDetails_shouldAddThisMemberToRepo() {
         final String id = "493410b3-dd0b-4b78-97bf-289f50f6e74f";
         UUID testUUID = UUID.fromString(id);
         PowerMockito.mockStatic(UUID.class);
         when(UUID.randomUUID()).thenReturn(testUUID);
-        testRepo.addMember("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen"));
+        testRepo.addMember(new Member("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen")));
         assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.r.r.tolkien@gmail.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("John");
         assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Tolkien");
@@ -64,7 +56,7 @@ public class PersonRepositoryTest {
         UUID testUUID = UUID.fromString(id);
         PowerMockito.mockStatic(UUID.class);
         when(UUID.randomUUID()).thenReturn(testUUID);
-        testRepo.addLibrarian("Rowling", "Joanne", "j.k.rowling@pottermore.com");
+        testRepo.addLibrarian(new Librarian("Rowling", "Joanne", "j.k.rowling@pottermore.com"));
         assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.k.rowling@pottermore.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("Joanne");
         assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Rowling");
@@ -77,7 +69,7 @@ public class PersonRepositoryTest {
         UUID testUUID = UUID.fromString(id);
         PowerMockito.mockStatic(UUID.class);
         when(UUID.randomUUID()).thenReturn(testUUID);
-        testRepo.addAdmin("Code", "Mike", "mike.code@gmail.com");
+        testRepo.addAdmin(new Admin("Code", "Mike", "mike.code@gmail.com"));
         assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("mike.code@gmail.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("Mike");
         assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Code");
