@@ -3,6 +3,7 @@ package be.thebest.service;
 import be.thebest.domain.exception.EmailValidationException;
 import be.thebest.domain.exception.InssValidationException;
 import be.thebest.domain.objects.persons.Address;
+import be.thebest.domain.objects.persons.Admin;
 import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.objects.persons.Person;
 import be.thebest.domain.repositories.PersonRepository;
@@ -53,6 +54,11 @@ public class PersonService {
             }
         }
         return repository.addMember(member);
+    }
+
+    public Admin addAdmin(Admin admin) {
+        verifyPermission();
+        return repository.addAdmin(admin);
     }
 
     private void verifyPermission() {

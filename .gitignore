@@ -24,6 +24,7 @@ domain/target/
 service/target/
 jar/target/
 api/target/
+*.lst
 
 # CMake
 cmake-build-debug/

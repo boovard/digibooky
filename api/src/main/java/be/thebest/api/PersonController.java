@@ -1,5 +1,7 @@
 package be.thebest.api;
 
+import be.thebest.api.admins.AdminDto;
+import be.thebest.api.admins.AdminMapper;
 import be.thebest.domain.objects.persons.Member;
 import be.thebest.service.PersonService;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class PersonController {
     private PersonService personService;
     private MemberMapper memberMapper;
+    private AdminMapper adminMapper;
 
     @Inject
     public PersonController(PersonService personService, MemberMapper memberMapper) {
@@ -36,6 +39,12 @@ public class PersonController {
     @ResponseStatus(HttpStatus.OK)
     public MemberDto addMember(MemberDto memberDto) {
         return memberMapper.toDto(personService.addMember(memberMapper.toDomain(memberDto)));
+    }
+
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public AdminDto addAdmin(AdminDto adminDto) {
+        return adminMapper.toDto(personService.addAdmin(adminMapper.toDomain(adminDto)));
     }
 
 

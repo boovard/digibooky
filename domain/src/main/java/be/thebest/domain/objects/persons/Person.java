@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public abstract class Person {
 
+    private UUID uniqueID;
     private String lastName;
     private String firstName;
     private String email;
-    private UUID uniqueID;
 
     public Person(){
     }
