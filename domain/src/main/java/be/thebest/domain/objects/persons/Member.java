@@ -10,14 +10,14 @@ public class Member extends Person {
     public Member() {
     }
 
-    public Member(UUID uniqueID, String inss, String lastName, String firstName, String email, Address address) {
-        super(uniqueID, lastName, firstName, email);
+    public Member(String inss, String lastName, String firstName, String email, Address address) {
+        super(lastName, firstName, email);
         this.inss = inss;
         this.address = address;
     }
 
-    public Member(UUID uniqueID, String inss, String lastName, String email, Address address) {
-        super(uniqueID, lastName, email);
+    public Member( String inss, String lastName, String email, Address address) {
+        super(lastName, email);
         this.inss = inss;
         this.address = address;
     }

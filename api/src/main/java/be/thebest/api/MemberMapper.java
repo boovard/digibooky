@@ -17,8 +17,8 @@ public class MemberMapper {
                 .withAddress(member.getAddress());
     }
 
-    public Person toDomain(MemberDto memberDto) {
-        return Member.MemberBuilder.member()
+    public Member toDomain(MemberDto memberDto) {
+        return (Member) Member.MemberBuilder.member()
                 .withUniqueID(memberDto.getUuid())
                 .withLastName(memberDto.getLastName())
                 .withAddress(memberDto.getAddress())
