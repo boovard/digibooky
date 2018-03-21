@@ -17,10 +17,20 @@ public class LendingRepository {
     }
 
     public Lending addLending(Lending lendingToAdd) {
-        return null;
+        //TODO should not use 'contains' method
+//        if (lendingRepository.keySet().size() > 0 && this.contains(lendingToAdd)) {
+//            throw new IllegalArgumentException("That book is already lent out.");
+//        }
+        lendingRepository.put(lendingCounter++, lendingToAdd);
+        return lendingRepository.get(lendingCounter - 1);
     }
 
-    public boolean contains(Lending lending) {
-        return true;
+    public boolean contains(Lending lendingToAdd) {
+        return lendingRepository.values().stream()
+                .anyMatch(lending -> lending.equals(lendingToAdd));
+    }
+
+    public void clear() {
+        lendingRepository.clear();
     }
 }
