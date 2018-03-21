@@ -1,5 +1,7 @@
 package be.thebest.api;
 
+import java.util.Objects;
+
 public class AddressDto {
 
     private String streetName;
@@ -45,5 +47,22 @@ public class AddressDto {
 
     public String getCity() {
         return city;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressDto that = (AddressDto) o;
+        return Objects.equals(streetName, that.streetName) &&
+                Objects.equals(houseNumber, that.houseNumber) &&
+                Objects.equals(postCode, that.postCode) &&
+                Objects.equals(city, that.city);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(streetName, houseNumber, postCode, city);
     }
 }

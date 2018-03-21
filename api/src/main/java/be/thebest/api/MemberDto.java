@@ -2,6 +2,7 @@ package be.thebest.api;
 
 import be.thebest.domain.objects.persons.Address;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class MemberDto {
@@ -68,5 +69,23 @@ public class MemberDto {
 
     public String getInss() {
         return inss;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MemberDto memberDto = (MemberDto) o;
+        return Objects.equals(inss, memberDto.inss) &&
+                Objects.equals(lastName, memberDto.lastName) &&
+                Objects.equals(firstName, memberDto.firstName) &&
+                Objects.equals(email, memberDto.email) &&
+                Objects.equals(addressDto, memberDto.addressDto);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(inss, lastName, firstName, email, addressDto);
     }
 }
