@@ -1,11 +1,8 @@
 package be.thebest.service;
 
-import be.thebest.domain.exception.EmailValidationException;
-import be.thebest.domain.exception.InssValidationException;
-import be.thebest.domain.objects.persons.Address;
-import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.objects.persons.Person;
-import be.thebest.domain.repositories.PersonRepository;
+import be.thebest.domain.exception.IllegalFieldException;
+import be.thebest.domain.objects.persons.*;
+import be.thebest.domain.objects.persons.PersonRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,20 +36,39 @@ public class PersonService {
     }
 
     public Member addMember(Member member) {
-        Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
-        Matcher m = p.matcher(member.getEmail());
-        if (!m.matches()){
-            throw new EmailValidationException("invalid email address");
-        }
+        emailAuthentication(member.getEmail());
         for (Member existingMember : repository.getMembersFromRepository().values()) {
             if (existingMember.getInss().equals(member.getInss())){
-                throw new InssValidationException("INSS number already used");
+                throw new IllegalFieldException("INSS number already used");
             }
-            if (existingMember.getEmail().equals(member.getEmail())){
-                throw new EmailValidationException("email address already used");
-            }
+
         }
         return repository.addMember(member);
+    }
+
+    public Admin addAdmin(Admin admin) {
+        verifyPermission();
+        emailAuthentication(admin.getEmail());
+        return repository.addAdmin(admin);
+    }
+
+    public Librarian addLibrarian(Librarian librarian) {
+        verifyPermission();
+        emailAuthentication(librarian.getEmail());
+        return repository.addLibrarian(librarian);
+    }
+
+    private void emailAuthentication(String email) {
+        Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
+        Matcher m = p.matcher(email);
+        if (!m.matches()){
+            throw new IllegalFieldException("invalid email address");
+        }
+        for (Member existingMember : repository.getMembersFromRepository().values()) {
+            if (existingMember.getEmail().equals(email)){
+                throw new IllegalFieldException("email address already used");
+            }
+        }
     }
 
     private void verifyPermission() {

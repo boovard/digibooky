@@ -1,6 +1,6 @@
 package be.thebest.api;
 
-import be.thebest.domain.objects.persons.Address;
+import be.thebest.domain.objects.Address;
 
 import javax.inject.Named;
 

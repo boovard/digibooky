@@ -1,14 +1,13 @@
 package be.thebest.api;
 
-import be.thebest.domain.objects.persons.Address;
+import be.thebest.domain.objects.Address;
 import be.thebest.domain.objects.persons.Admin;
 import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.repositories.PersonRepository;
+import be.thebest.domain.objects.persons.PersonRepository;
 import be.thebest.service.PersonService;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -73,9 +72,7 @@ public class DigibookyControllerIntegrationTest {
     }
 
     @Test
-    //@Ignore
     public void getMembers_givenRepoWithFourMembers_shouldReturnAllFourMembers() {
-        // Tests are not independent :-(
         addFourMembers(repository);
         List<MemberDto> actualMembers = controller.getMembers();
         List<MemberDto> expectedMembers = new ArrayList<>();
