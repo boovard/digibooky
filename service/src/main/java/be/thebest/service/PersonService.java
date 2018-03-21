@@ -9,6 +9,7 @@ import be.thebest.domain.repositories.PersonRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -31,28 +32,27 @@ public class PersonService {
     }
 
     public List<Member> getMembers() {
-        //TODO make it an unmodifiable list
         verifyPermission();
-        return repository.getMembersFromRepository().entrySet().stream()
+        return Collections.unmodifiableList(repository.getMembersFromRepository().entrySet().stream()
                 .map(person -> (Member) person)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
-    public Member addMember(String inss, String lastName, String firstName, String eMailAddress, Address address) {
+    public Member addMember(Member member) {
         Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
-        Matcher m = p.matcher(eMailAddress);
+        Matcher m = p.matcher(member.getEmail());
         if (!m.matches()){
             throw new EmailValidationException("invalid email address");
         }
-        for (Member member : repository.getMembersFromRepository().values()) {
-            if (member.getInss().equals(inss)){
+        for (Member existingMember : repository.getMembersFromRepository().values()) {
+            if (existingMember.getInss().equals(member.getInss())){
                 throw new InssValidationException("INSS number already used");
             }
-            if (member.getEmail().equals(eMailAddress)){
+            if (existingMember.getEmail().equals(member.getEmail())){
                 throw new EmailValidationException("email address already used");
             }
         }
-        return repository.addMember(inss,lastName,firstName,eMailAddress,address);
+        return repository.addMember(member);
     }
 
     private void verifyPermission() {

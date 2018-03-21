@@ -12,17 +12,15 @@ public abstract class Person {
     public Person(){
     }
 
-    public Person(UUID uniqueID, String lastName, String firstName, String email) {
+    public Person(String lastName, String firstName, String email) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
-        this.uniqueID = uniqueID;
     }
 
-    public Person(UUID uniqueID, String lastName, String email) {
+    public Person(String lastName, String email) {
         this.lastName = lastName;
         this.email = email;
-        this.uniqueID = uniqueID;
     }
 
     public String getLastName() {

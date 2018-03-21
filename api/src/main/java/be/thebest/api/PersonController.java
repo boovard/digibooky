@@ -34,7 +34,7 @@ public class PersonController {
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public MemberDto addMember(MemberDto memberDto) {
-        return null;
+        return memberMapper.toDto(personService.addMember(memberMapper.toDomain(memberDto)));
     }
 
 

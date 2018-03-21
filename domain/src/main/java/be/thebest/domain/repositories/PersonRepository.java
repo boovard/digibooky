@@ -15,43 +15,38 @@ public class PersonRepository {
 
     public PersonRepository() {
         this.personRepository = new HashMap<>();
-        addAdmin("Deletinne", "Niels", "niels.delestinne@switchfully.com");
+        addAdmin(new Admin("Deletinne", "Niels", "niels.delestinne@switchfully.com"));
     }
 
     public Map<UUID, Person> getPersonRepository() {
         return Collections.unmodifiableMap(personRepository);
     }
 
-    public Map<UUID, Member> getMembersFromRepository(){
+    public Map<UUID, Member> getMembersFromRepository() {
         Map<UUID, Member> memberRepository = new HashMap<>();
-        for (Person person : personRepository.values()){
-            if (person instanceof Member){
-                memberRepository.put(person.getUniqueID(),(Member)person);
+        for (Person person : personRepository.values()) {
+            if (person instanceof Member) {
+                memberRepository.put(person.getUniqueID(), (Member) person);
             }
         }
         return memberRepository;
     }
 
-    public Person addPerson(Person person) {
+    private Person addPerson(Person person) {
+        person.setUniqueID(UUID.randomUUID());
         return personRepository.put(person.getUniqueID(), person);
     }
 
-    public Member addMember(String inss, String lastName, String firstName, String eMailAddress, Address address) {
-        UUID uuid = UUID.randomUUID();
-        Member member = new Member(uuid, inss, lastName, firstName, eMailAddress, address);
-        return (Member)addPerson(member);
+    public Member addMember(Member member) {
+        return (Member) addPerson(member);
     }
 
 
-    public Admin addAdmin(String lastName, String firstName, String email) {
-        UUID uuid = UUID.randomUUID();
-        Admin admin = new Admin(uuid, lastName, firstName, email);
-        return (Admin)addPerson(admin);
+    public Admin addAdmin(Admin admin) {
+        return (Admin) addPerson(admin);
     }
 
-    public Librarian addLibrarian(String lastName, String firstName, String email) {
-        UUID uuid = UUID.randomUUID();
-        Librarian librarian = new Librarian(uuid, lastName, firstName, email);
-        return (Librarian)addPerson(librarian);
+    public Librarian addLibrarian(Librarian librarian) {
+        return (Librarian) addPerson(librarian);
     }
 }
