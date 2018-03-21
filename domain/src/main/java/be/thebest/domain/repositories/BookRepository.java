@@ -44,15 +44,16 @@ public class BookRepository {
         if (books.get(isbn) != null) {
             return books.get(isbn);
         }
-        throw new BookNotFoundException("Book not found. Check ISBN again.");
+        throw new NotFoundException("Book not found. Check ISBN again.");
     }
-    /*
+
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
+        String isbnRegex = createRegexExpressionForWildcardIsbn(isbnWithWildcard);
         List<Book> booksFound = new ArrayList<>();
 
-        Pattern p = Pattern.compile(isbnWithWildcard);
+        Pattern p = Pattern.compile(isbnRegex);
 
-        for (String isbn: books.keySet()) {
+        for (String isbn : books.keySet()) {
             Matcher m = p.matcher(isbn);
             if (m.matches()) {
                 booksFound.add(books.get(isbn));
@@ -60,7 +61,22 @@ public class BookRepository {
         }
         return booksFound;
     }
-    */
+
+    private String createRegexExpressionForWildcardIsbn(String isbn) {
+        String regexToReplaceWildcard = "[A-Za-z0-9]{1}";
+        String regexExpression = "^";
+        for (int i = 0; i < isbn.length(); i++) {
+            if (isbn.charAt(i) == '.') {
+                regexExpression = regexExpression + regexToReplaceWildcard;
+            }
+            else {
+                regexExpression = regexExpression + isbn.charAt(i);
+            }
+
+        }
+        return regexExpression + '$';
+    }
+
 
     public Book getBookByTitle(String title) {
         return null;

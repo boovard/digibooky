@@ -1,4 +1,3 @@
-
 package be.thebest.domain.repositories;
 
 import be.thebest.domain.exception.BookNotFoundException;
@@ -16,6 +15,8 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class BookRepositoryTest {
+    @Rule
+    public ExpectedException expectedBookException = ExpectedException.none();
     private BookRepository testBookRepo;
     private Book book0, book1, book2, book3, book4, book5, book6, book7;
 
@@ -48,9 +49,6 @@ public class BookRepositoryTest {
         testBookRepo.registerNewBook(book6);
         testBookRepo.registerNewBook(book7);
     }
-
-    @Rule
-    public ExpectedException expectedBookException = ExpectedException.none();
     /*
     @Test
     public void getBookByIsbn_whenBookFound_returnTitleAuthorAndISBN() {
@@ -58,7 +56,6 @@ public class BookRepositoryTest {
         (bookDetails, testBookRepo.getBookByIsbn("ISBN4");
     }
     */
-
 
     @Test
     public void getBookByIsbn_whenBookNotFound_returnStringMessage() {
@@ -76,8 +73,6 @@ public class BookRepositoryTest {
     public void getBookByIsbn_whenIsbnIsNotFound_returnBookNotFoundException() {
         testBookRepo.getBookByIsbn("Unknown ISBN");
     }
-}
-/*}
 
     @Test
     public void getBookByIsbn_whenProvidedAWildCardForTheFirstCharacter_returnCorrespondingListOfBooks() {
@@ -112,5 +107,4 @@ public class BookRepositoryTest {
         testBooks.add(book4);
         assertEquals(testBooks, testBookRepo.getBookByIsbnWithWildCard("....."));
     }
-
-*/
+}
