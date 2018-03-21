@@ -1,6 +1,6 @@
 package be.thebest.domain.objects.persons;
 
-import java.util.UUID;
+import be.thebest.domain.objects.Address;
 
 public class Member extends Person {
 

@@ -1,5 +1,6 @@
 package be.thebest.domain.repositories;
 
+import be.thebest.domain.objects.Address;
 import be.thebest.domain.objects.persons.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.entry;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 

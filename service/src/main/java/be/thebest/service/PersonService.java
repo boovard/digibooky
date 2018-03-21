@@ -3,7 +3,7 @@ package be.thebest.service;
 import be.thebest.domain.exception.EmailValidationException;
 import be.thebest.domain.exception.InssValidationException;
 import be.thebest.domain.objects.persons.*;
-import be.thebest.domain.repositories.PersonRepository;
+import be.thebest.domain.objects.persons.PersonRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;

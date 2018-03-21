@@ -1,9 +1,9 @@
 package be.thebest.api;
 
-import be.thebest.domain.objects.persons.Address;
+import be.thebest.domain.objects.Address;
 import be.thebest.domain.objects.persons.Admin;
 import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.repositories.PersonRepository;
+import be.thebest.domain.objects.persons.PersonRepository;
 import be.thebest.service.PersonService;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
