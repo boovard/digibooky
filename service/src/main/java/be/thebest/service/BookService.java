@@ -11,7 +11,7 @@ import java.util.List;
 
 @Named
 public class BookService {
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
 
     @Inject
     public BookService(BookRepository bookRepository) {
@@ -19,11 +19,10 @@ public class BookService {
     }
 
     public List<Book> getAllBooks() {
-        List<Book> booksToReturn = new ArrayList<>();
+        return new ArrayList<>(bookRepository.getAllBooks().values());
+    }
 
-        for (Book book: bookRepository.getAllBooks().values()) {
-            booksToReturn.add(book);
-        }
-        return booksToReturn;
+    public String getBookDetails(String isbn) {
+        return bookRepository.getBookDetails(isbn);
     }
 }

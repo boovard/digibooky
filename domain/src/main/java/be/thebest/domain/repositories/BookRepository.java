@@ -1,5 +1,6 @@
 package be.thebest.domain.repositories;
 
+import be.thebest.domain.exception.BookNotFoundException;
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
 import com.sun.javafx.binding.StringFormatter;
@@ -44,7 +45,11 @@ public class BookRepository {
     }
 
     public Book getBookByIsbn(String isbn) {
-        return books.get(isbn);
+        if (books.get(isbn) != null) {
+            return books.get(isbn);
+        } else {
+            throw new BookNotFoundException("Book not found. Check ISBN again.");
+        }
     }
 
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
