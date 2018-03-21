@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -64,11 +65,16 @@ public class DigibookyControllerIntegrationTest {
         Assertions.assertThat(service.getMembers().get(0).getEmail()).isEqualTo(tempMember.getEmail());
     }
 
-//    @Test
-//    public void getMembers_givenRepoWithFourMembers_shouldReturnAllFourMembers() {
-//        addFourMembers(repository);
-//        List<MemberDto> actualMembers = controller.getMembers();
-//        Assertions.assertThat(actualMembers).containsExactlyInAnyOrder(mapper.toDto(leander), mapper.toDto(simon), mapper.toDto(dirk), mapper.toDto(lien));
-//    }
+    @Test
+    public void getMembers_givenRepoWithFourMembers_shouldReturnAllFourMembers() {
+        addFourMembers(repository);
+        List<MemberDto> actualMembers = controller.getMembers();
+        List<MemberDto> expectedMembers = new ArrayList<>();
+        expectedMembers.add(mapper.toDto(leander));
+        expectedMembers.add(mapper.toDto(simon));
+        expectedMembers.add(mapper.toDto(dirk));
+        expectedMembers.add(mapper.toDto(lien));
+        Assertions.assertThat(actualMembers).containsExactlyInAnyOrderElementsOf(expectedMembers);
+    }
 
 }
