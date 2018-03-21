@@ -2,8 +2,8 @@ package be.thebest.domain.exception;
 
 public class LendingFineException extends RuntimeException {
 
-    public LendingFineException() {
-        super();
+    public LendingFineException(String errorMessage) {
+        super(errorMessage);
     }
 
 }
