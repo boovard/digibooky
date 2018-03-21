@@ -1,12 +1,19 @@
 package be.thebest.api;
 
 import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.objects.persons.Person;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
 public class MemberMapper {
+
+    private AddressMapper addressMapper;
+
+    @Inject
+    public MemberMapper(AddressMapper addressMapper) {
+        this.addressMapper = addressMapper;
+    }
 
     public MemberDto toDto(Member member) {
         return MemberDto.memberDto()
@@ -14,14 +21,17 @@ public class MemberMapper {
                 .withLastName(member.getLastName())
                 .withFirstName(member.getFirstName())
                 .withEmail(member.getEmail())
-                .withAddress(member.getAddress());
+                .withInss(member.getInss())
+                .withAddressDto(addressMapper.toDto(member.getAddress()));
     }
 
     public Member toDomain(MemberDto memberDto) {
         return (Member) Member.MemberBuilder.member()
                 .withUniqueID(memberDto.getUuid())
                 .withLastName(memberDto.getLastName())
-                .withAddress(memberDto.getAddress())
+                .withFirstName(memberDto.getFirstName())
+                .withEmail(memberDto.getEmail())
+                .withAddress(addressMapper.toDomain(memberDto.getAddressDto()))
                 .withInss(memberDto.getInss())
                 .build();
     }

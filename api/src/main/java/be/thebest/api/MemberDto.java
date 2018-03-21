@@ -10,7 +10,7 @@ public class MemberDto {
     private String lastName;
     private String firstName;
     private String email;
-    private Address address;
+    private AddressDto addressDto;
 
     public static MemberDto memberDto() {
         return new MemberDto();
@@ -36,8 +36,13 @@ public class MemberDto {
         return this;
     }
 
-    public MemberDto withAddress(Address address) {
-        this.address = address;
+    public MemberDto withAddressDto(AddressDto addressDto) {
+        this.addressDto = addressDto;
+        return this;
+    }
+
+    public MemberDto withInss(String inss) {
+        this.inss = inss;
         return this;
     }
 
@@ -57,8 +62,8 @@ public class MemberDto {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public AddressDto getAddressDto() {
+        return addressDto;
     }
 
     public String getInss() {

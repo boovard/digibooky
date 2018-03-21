@@ -34,7 +34,7 @@ public class PersonService {
     public List<Member> getMembers() {
         verifyPermission();
         return Collections.unmodifiableList(repository.getMembersFromRepository().entrySet().stream()
-                .map(person -> (Member) person)
+                .map(person -> person.getValue())
                 .collect(Collectors.toList()));
     }
 

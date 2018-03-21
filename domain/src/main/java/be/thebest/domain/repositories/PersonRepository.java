@@ -34,7 +34,8 @@ public class PersonRepository {
 
     private Person addPerson(Person person) {
         person.setUniqueID(UUID.randomUUID());
-        return personRepository.put(person.getUniqueID(), person);
+        personRepository.put(person.getUniqueID(), person);
+        return personRepository.get(person.getUniqueID());
     }
 
     public Member addMember(Member member) {

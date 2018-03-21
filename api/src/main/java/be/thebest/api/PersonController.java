@@ -1,5 +1,6 @@
 package be.thebest.api;
 
+import be.thebest.domain.objects.persons.Member;
 import be.thebest.service.PersonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
