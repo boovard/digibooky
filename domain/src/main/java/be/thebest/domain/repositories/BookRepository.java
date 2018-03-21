@@ -46,18 +46,21 @@ public class BookRepository {
         }
         throw new BookNotFoundException("Book not found. Check ISBN again.");
     }
-}
     /*
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
         List<Book> booksFound = new ArrayList<>();
 
-        Pattern p = Pattern.compile("^[_A-Za-z0-9-]");
-        Matcher m = p.matcher(isbnWithWildcard);
+        Pattern p = Pattern.compile(isbnWithWildcard);
 
+        for (String isbn: books.keySet()) {
+            Matcher m = p.matcher(isbn);
+            if (m.matches()) {
+                booksFound.add(books.get(isbn));
+            }
+        }
+        return booksFound;
     }
-}
-        //if (m.matches()));
-
+    */
 
     public Book getBookByTitle(String title) {
         return null;
@@ -91,4 +94,3 @@ public class BookRepository {
 
     }
 }
-*/

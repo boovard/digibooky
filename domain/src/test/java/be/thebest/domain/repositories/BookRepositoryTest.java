@@ -23,20 +23,20 @@ public class BookRepositoryTest {
     public void setUp() {
         testBookRepo = new BookRepository();
         book0 = new Book("ISBN0", "Title0",
-                new Author(0,"LastName0", "FirstName0"));
+                new Author(0, "LastName0", "FirstName0"));
         book1 = new Book("ISBN1", "Title1",
-                new Author(1,"LastName1", "FirstName1"));
+                new Author(1, "LastName1", "FirstName1"));
         book2 = new Book("ISBN2", "Title2",
-                new Author(2,"LastName2", "FirstName2"));
+                new Author(2, "LastName2", "FirstName2"));
         book3 = new Book("ISBN3", "Title3",
-                new Author(3,"LastName3", "FirstName3"));
+                new Author(3, "LastName3", "FirstName3"));
         book4 = new Book("ISBN4", "Title4",
-                new Author(4,"LastName4", "FirstName4"));
-        book5 = new Book ("Wildcard1ISBN", "Title5",
+                new Author(4, "LastName4", "FirstName4"));
+        book5 = new Book("Wildcard1ISBN", "Title5",
                 new Author(5, "LastName5", "FirstName5"));
-        book6 = new Book ("Wildcard2ISBN", "Title6",
+        book6 = new Book("Wildcard2ISBN", "Title6",
                 new Author(6, "LastName6", "FirstName6"));
-        book7 = new Book ("RegexISBN", "Title7",
+        book7 = new Book("RegexISBN", "Title7",
                 new Author(7, "LastName7", "FirstName7"));
 
         testBookRepo.registerNewBook(book0);
@@ -53,14 +53,15 @@ public class BookRepositoryTest {
     public ExpectedException expectedBookException = ExpectedException.none();
     /*
     @Test
-    public void getBookDetails_whenBookFound_returnTitleAuthorAndISBN() {
+    public void getBookByIsbn_whenBookFound_returnTitleAuthorAndISBN() {
         String bookDetails = "title: Title4 \n Author: LastName4 FirstName4 \n ISBN: ISBN4";
-        assertEquals(bookDetails, testBookRepo.getBookByIsbn("ISBN4"));
+        (bookDetails, testBookRepo.getBookByIsbn("ISBN4");
     }
     */
 
+
     @Test
-    public void getBookDetails_whenBookNotFound_returnStringMessage() {
+    public void getBookByIsbn_whenBookNotFound_returnStringMessage() {
         expectedBookException.expect(BookNotFoundException.class);
         expectedBookException.expectMessage("Book not found. Check ISBN again.");
         testBookRepo.getBookByIsbn("Unknown ISBN");
@@ -70,11 +71,13 @@ public class BookRepositoryTest {
     public void getBookByIsbn_whenFullIsbnIsProvidedAndCorrect_returnTheBook() {
         assertEquals(book4, testBookRepo.getBookByIsbn("ISBN4"));
     }
-/*
+
     @Test(expected = BookNotFoundException.class)
     public void getBookByIsbn_whenIsbnIsNotFound_returnBookNotFoundException() {
         testBookRepo.getBookByIsbn("Unknown ISBN");
     }
+}
+/*}
 
     @Test
     public void getBookByIsbn_whenProvidedAWildCardForTheFirstCharacter_returnCorrespondingListOfBooks() {
@@ -109,5 +112,5 @@ public class BookRepositoryTest {
         testBooks.add(book4);
         assertEquals(testBooks, testBookRepo.getBookByIsbnWithWildCard("....."));
     }
-    */
-}
+
+*/
