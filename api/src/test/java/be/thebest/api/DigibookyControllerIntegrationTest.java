@@ -5,6 +5,7 @@ import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.repositories.PersonRepository;
 import be.thebest.service.PersonService;
 import org.assertj.core.api.Assertions;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
