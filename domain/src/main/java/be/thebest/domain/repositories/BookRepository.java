@@ -1,15 +1,12 @@
 package be.thebest.domain.repositories;
 
-import be.thebest.domain.exception.BookNotFoundException;
+import be.thebest.domain.exception.NotFoundException;
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
-import com.sun.javafx.binding.StringFormatter;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Named
 public class BookRepository {
@@ -44,7 +41,7 @@ public class BookRepository {
         if (books.get(isbn) != null) {
             return books.get(isbn);
         }
-        throw new BookNotFoundException("Book not found. Check ISBN again.");
+        throw new NotFoundException("Book not found. Check ISBN again.");
     }
 }
     /*
