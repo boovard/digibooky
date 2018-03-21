@@ -29,6 +29,8 @@ public class MemberMapper {
         return (Member) Member.MemberBuilder.member()
                 .withUniqueID(memberDto.getUuid())
                 .withLastName(memberDto.getLastName())
+                .withFirstName(memberDto.getFirstName())
+                .withEmail(memberDto.getEmail())
                 .withAddress(addressMapper.toDomain(memberDto.getAddressDto()))
                 .withInss(memberDto.getInss())
                 .build();
