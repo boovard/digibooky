@@ -1,6 +1,7 @@
 package be.thebest.api;
 
 import be.thebest.domain.objects.persons.Address;
+import be.thebest.domain.objects.persons.Admin;
 import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.repositories.PersonRepository;
 import be.thebest.service.PersonService;
@@ -9,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -25,6 +25,14 @@ public class DigibookyControllerIntegrationTest {
     private Member simon;
     private Member dirk;
     private Member lien;
+    @Inject
+    private PersonController controller;
+    @Inject
+    private PersonService service;
+    @Inject
+    private PersonRepository repository;
+    @Inject
+    private MemberMapper mapper;
 
     @Before
     public void setUp() {
@@ -34,14 +42,11 @@ public class DigibookyControllerIntegrationTest {
         lien = new Member("164978", "Block", "Marie-Lynne", "machine@learning.com", new Address("4659", "Middle of nowhere"));
     }
 
-    @Inject
-    private PersonController controller;
-    @Inject
-    private PersonService service;
-    @Inject
-    private PersonRepository repository;
-    @Inject
-    private MemberMapper mapper;
+    @After
+    public void breakDown() {
+        repository.clearRepository();
+        repository.addAdmin(new Admin("Deletinne", "Niels", "niels.delestinne@switchfully.com"));
+    }
 
     private void addFourMembers(PersonRepository repo) {
         repo.addMember(leander);
@@ -60,10 +65,10 @@ public class DigibookyControllerIntegrationTest {
                 .withAddressDto(new AddressDto().withCity("Namur").withpostCode("5000"));
         controller.addMember(memberDto);
         Member tempMember = mapper.toDomain(memberDto);
-        Assertions.assertThat(service.getMembers().get(0).getInss()).isEqualTo(tempMember.getInss());
-        Assertions.assertThat(service.getMembers().get(0).getLastName()).isEqualTo(tempMember.getLastName());
-        Assertions.assertThat(service.getMembers().get(0).getFirstName()).isEqualTo(tempMember.getFirstName());
-        Assertions.assertThat(service.getMembers().get(0).getEmail()).isEqualTo(tempMember.getEmail());
+        Assertions.assertThat(service.getMembers().get(service.getMembers().size() - 1).getInss()).isEqualTo(tempMember.getInss());
+        Assertions.assertThat(service.getMembers().get(service.getMembers().size() - 1).getLastName()).isEqualTo(tempMember.getLastName());
+        Assertions.assertThat(service.getMembers().get(service.getMembers().size() - 1).getFirstName()).isEqualTo(tempMember.getFirstName());
+        Assertions.assertThat(service.getMembers().get(service.getMembers().size() - 1).getEmail()).isEqualTo(tempMember.getEmail());
     }
 
     @Test
