@@ -50,4 +50,14 @@ public class PersonRepository {
     public Librarian addLibrarian(Librarian librarian) {
         return (Librarian) addPerson(librarian);
     }
+
+    public void removePerson(UUID uuid) {
+        personRepository.remove(uuid);
+    }
+
+    //Necessary because we don't have transactions
+    //Do not use outside of test scope!
+    public void clearRepository() {
+        personRepository.clear();
+    }
 }
