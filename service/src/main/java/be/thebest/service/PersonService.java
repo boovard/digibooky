@@ -31,6 +31,7 @@ public class PersonService {
     }
 
     public List<Member> getMembers() {
+        //TODO make it an unmodifiable list
         verifyPermission();
         return repository.getMembersFromRepository().entrySet().stream()
                 .map(person -> (Member) person)
