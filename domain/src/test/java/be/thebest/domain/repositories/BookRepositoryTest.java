@@ -51,18 +51,19 @@ public class BookRepositoryTest {
 
     @Rule
     public ExpectedException expectedBookException = ExpectedException.none();
-
+    /*
     @Test
     public void getBookDetails_whenBookFound_returnTitleAuthorAndISBN() {
         String bookDetails = "title: Title4 \n Author: LastName4 FirstName4 \n ISBN: ISBN4";
-        assertEquals(bookDetails, testBookRepo.getBookDetails("ISBN4"));
+        assertEquals(bookDetails, testBookRepo.getBookByIsbn("ISBN4"));
     }
+    */
 
     @Test
     public void getBookDetails_whenBookNotFound_returnStringMessage() {
         expectedBookException.expect(BookNotFoundException.class);
         expectedBookException.expectMessage("Book not found. Check ISBN again.");
-        testBookRepo.getBookDetails("Unknown ISBN");
+        testBookRepo.getBookByIsbn("Unknown ISBN");
     }
 
     @Test

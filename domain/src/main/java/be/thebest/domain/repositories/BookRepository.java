@@ -18,13 +18,13 @@ public class BookRepository {
     @Inject
     public BookRepository() {
         Book book1 = new Book("ISBN1", "History for dummies",
-                new Author(1,"Van Reeth", "Leander"));
+                new Author(1, "Van Reeth", "Leander"));
         Book book2 = new Book("ISBN2", "Geography for dummies",
-                new Author(2,"Bouvy", "Simon"));
+                new Author(2, "Bouvy", "Simon"));
         Book book3 = new Book("ISBN3", "Javascript for dummies",
-                new Author(3,"Block", "Marie-Lynne"));
+                new Author(3, "Block", "Marie-Lynne"));
         Book book4 = new Book("ISBN4", "Biology for dummmies",
-                new Author(4,"Hermans", "Dirk"));
+                new Author(4, "Hermans", "Dirk"));
         this.books = new HashMap<>();
         books.put(book1.getIsbn(), book1);
         books.put(book2.getIsbn(), book2);
@@ -44,34 +44,20 @@ public class BookRepository {
         if (books.get(isbn) != null) {
             return books.get(isbn);
         }
-            throw new BookNotFoundException("Book not found. Check ISBN again.");
-    }
-    
-    public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
-        List<Book> booksFound = new ArrayList<>();
-        /*
-        Pattern p = Pattern.compile(^[A-Za-z0-9-]);
-        Matcher m = p.matcher(books.);
-        if (m.matches())
-        */
-
-        /*
-        for (String isbn : books.keySet()) {
-            for (int i = 0; i < isbn.length(); i++) {
-                if (isbn.charAt(i) == '.' || isbnWithWildcard.charAt(i) == isbn.charAt(i)) {
-                    counter++;
-                }
-            }
-
-           
-            if (books.get(isbnWithWildcard) != null) {
-                booksFound.add();
-
-            }
-        */
         throw new BookNotFoundException("Book not found. Check ISBN again.");
     }
-    
+}
+    /*
+    public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
+        List<Book> booksFound = new ArrayList<>();
+
+        Pattern p = Pattern.compile("^[_A-Za-z0-9-]");
+        Matcher m = p.matcher(isbnWithWildcard);
+
+    }
+}
+        //if (m.matches()));
+
 
     public Book getBookByTitle(String title) {
         return null;
@@ -105,3 +91,4 @@ public class BookRepository {
 
     }
 }
+*/
