@@ -1,8 +1,6 @@
 package be.thebest.domain.objects.persons;
 
-import be.thebest.domain.objects.persons.Address;
-import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.objects.persons.Person;
+import be.thebest.domain.objects.Address;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
