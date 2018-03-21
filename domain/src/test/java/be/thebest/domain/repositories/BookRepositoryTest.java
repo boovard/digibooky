@@ -6,7 +6,9 @@ import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,25 +48,21 @@ public class BookRepositoryTest {
         testBookRepo.registerNewBook(book6);
         testBookRepo.registerNewBook(book7);
     }
-    /*
-    private void addBooksToRepo(int numberOfBooks) {
-        for (int i = 0; i <= numberOfBooks; i++) {
-            testBookRepo.registerNewBook(new Book("ISBN" + i, "Title" + i,
-                    new Author(i, "LastName" + i, "FirstName" + i)));
-        }
-    }
-    */
+
+    @Rule
+    public ExpectedException expectedBookException = ExpectedException.none();
 
     @Test
-    public void getBookDetails_whenBookFind_returnTitleAuthorAndISBN() {
+    public void getBookDetails_whenBookFound_returnTitleAuthorAndISBN() {
         String bookDetails = "title: Title4 \n Author: LastName4 FirstName4 \n ISBN: ISBN4";
         assertEquals(bookDetails, testBookRepo.getBookDetails("ISBN4"));
     }
 
     @Test
     public void getBookDetails_whenBookNotFound_returnStringMessage() {
-        String bookDetails = "Book not found. Check ISBN again.";
-        assertEquals(bookDetails, testBookRepo.getBookDetails("Unknown ISBN"));
+        expectedBookException.expect(BookNotFoundException.class);
+        expectedBookException.expectMessage("Book not found. Check ISBN again.");
+        testBookRepo.getBookDetails("Unknown ISBN");
     }
 
     @Test
