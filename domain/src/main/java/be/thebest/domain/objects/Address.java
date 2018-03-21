@@ -1,4 +1,4 @@
-package be.thebest.domain.objects.persons;
+package be.thebest.domain.objects;
 
 public class Address {
 

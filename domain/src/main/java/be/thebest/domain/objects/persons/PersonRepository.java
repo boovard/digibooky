@@ -1,4 +1,4 @@
-package be.thebest.domain.repositories;
+package be.thebest.domain.objects.persons;
 
 import be.thebest.domain.objects.persons.*;
 

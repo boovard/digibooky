@@ -1,7 +1,5 @@
 package be.thebest.api;
 
-import be.thebest.domain.objects.persons.Address;
-
 import java.util.Objects;
 import java.util.UUID;
 

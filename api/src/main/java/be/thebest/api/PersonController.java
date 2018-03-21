@@ -42,19 +42,19 @@ public class PersonController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/addMember", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public MemberDto addMember(MemberDto memberDto) {
         return memberMapper.toDto(personService.addMember(memberMapper.toDomain(memberDto)));
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/addAdmin", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public AdminDto addAdmin(AdminDto adminDto) {
         return adminMapper.toDto(personService.addAdmin(adminMapper.toDomain(adminDto)));
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/addLibrarian", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public LibrarianDto addLibrarian(LibrarianDto librarianDto){
         return librarianMapper.toDto(personService.addLibrarian(librarianMapper.toDomain(librarianDto)));

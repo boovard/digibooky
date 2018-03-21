@@ -1,9 +1,8 @@
 package be.thebest.domain.repositories;
 
-import be.thebest.domain.exception.BookNotFoundException;
+import be.thebest.domain.exception.NotFoundException;
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
-import com.sun.javafx.binding.StringFormatter;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -68,45 +67,11 @@ public class BookRepository {
         for (int i = 0; i < isbn.length(); i++) {
             if (isbn.charAt(i) == '.') {
                 regexExpression = regexExpression + regexToReplaceWildcard;
-            }
-            else {
+            } else {
                 regexExpression = regexExpression + isbn.charAt(i);
             }
-
         }
         return regexExpression + '$';
     }
-
-
-    public Book getBookByTitle(String title) {
-        return null;
-    }
-
-    public Book getBookByAuthor(String authorId) {
-        return null;
-    }
-
-    public Book updateBook(String title) {
-        return null;
-    }
-
-    public Book updateBook(Author author) {
-        return null;
-    }
-
-    public void deleteBook(String isbn) {
-
-    }
-
-    public void lendBook(String isbn) {
-
-    }
-
-    public void returnBook(String isbn) {
-
-    }
-
-    public void getOverdueBooks() {
-
-    }
 }
+

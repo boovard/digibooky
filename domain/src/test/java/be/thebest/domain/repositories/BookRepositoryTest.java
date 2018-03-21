@@ -1,16 +1,18 @@
 package be.thebest.domain.repositories;
 
-import be.thebest.domain.exception.BookNotFoundException;
+import be.thebest.domain.exception.NotFoundException;
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
-import org.assertj.core.api.Assertions;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -49,17 +51,10 @@ public class BookRepositoryTest {
         testBookRepo.registerNewBook(book6);
         testBookRepo.registerNewBook(book7);
     }
-    /*
-    @Test
-    public void getBookByIsbn_whenBookFound_returnTitleAuthorAndISBN() {
-        String bookDetails = "title: Title4 \n Author: LastName4 FirstName4 \n ISBN: ISBN4";
-        (bookDetails, testBookRepo.getBookByIsbn("ISBN4");
-    }
-    */
 
     @Test
-    public void getBookByIsbn_whenBookNotFound_returnStringMessage() {
-        expectedBookException.expect(BookNotFoundException.class);
+    public void getBook_whenBookNotFound_returnStringMessage() {
+        expectedBookException.expect(NotFoundException.class);
         expectedBookException.expectMessage("Book not found. Check ISBN again.");
         testBookRepo.getBookByIsbn("Unknown ISBN");
     }
@@ -69,8 +64,8 @@ public class BookRepositoryTest {
         assertEquals(book4, testBookRepo.getBookByIsbn("ISBN4"));
     }
 
-    @Test(expected = BookNotFoundException.class)
-    public void getBookByIsbn_whenIsbnIsNotFound_returnBookNotFoundException() {
+    @Test(expected = NotFoundException.class)
+    public void getBookByIsbn_whenIsbnIsNotFound_returnNotFoundException() {
         testBookRepo.getBookByIsbn("Unknown ISBN");
     }
 
@@ -79,7 +74,7 @@ public class BookRepositoryTest {
         List<Book> testBooks = new ArrayList<>();
         testBooks.add(book5);
         testBooks.add(book6);
-        assertEquals(testBooks, testBookRepo.getBookByIsbnWithWildCard(".ildcardISBN"));
+        assertEquals(testBooks, testBookRepo.getBookByIsbnWithWildCard(".ildcard.ISBN"));
     }
 
     @Test
@@ -94,7 +89,7 @@ public class BookRepositoryTest {
         List<Book> testBooks = new ArrayList<>();
         testBooks.add(book5);
         testBooks.add(book6);
-        assertEquals(testBooks, testBookRepo.getBookByIsbnWithWildCard("Wildca..ISBN"));
+        assertEquals(testBooks, testBookRepo.getBookByIsbnWithWildCard("Wildca...ISBN"));
     }
 
     @Test
@@ -105,6 +100,6 @@ public class BookRepositoryTest {
         testBooks.add(book2);
         testBooks.add(book3);
         testBooks.add(book4);
-        assertEquals(testBooks, testBookRepo.getBookByIsbnWithWildCard("....."));
+        assertTrue(testBooks.containsAll(testBookRepo.getBookByIsbnWithWildCard(".....")));
     }
 }
