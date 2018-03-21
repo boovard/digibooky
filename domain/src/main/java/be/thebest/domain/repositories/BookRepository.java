@@ -8,6 +8,8 @@ import com.sun.javafx.binding.StringFormatter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Named
 public class BookRepository {
@@ -38,24 +40,38 @@ public class BookRepository {
         return Collections.unmodifiableMap(books);
     }
 
-    public String getBookDetails(String isbn) {
-        Book book = getBookByIsbn(isbn);
-        return String.format("title: %s \n Author: %s %s \n ISBN: %s",
-            book.getTitle(), book.getAuthor().getLastName(), book.getAuthor().getFirstName() , isbn);
-    }
-
     public Book getBookByIsbn(String isbn) {
         if (books.get(isbn) != null) {
             return books.get(isbn);
-        } else {
-            throw new BookNotFoundException("Book not found. Check ISBN again.");
         }
+            throw new BookNotFoundException("Book not found. Check ISBN again.");
     }
-
+    
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
         List<Book> booksFound = new ArrayList<>();
-        return booksFound;
+        /*
+        Pattern p = Pattern.compile(^[A-Za-z0-9-]);
+        Matcher m = p.matcher(books.);
+        if (m.matches())
+        */
+
+        /*
+        for (String isbn : books.keySet()) {
+            for (int i = 0; i < isbn.length(); i++) {
+                if (isbn.charAt(i) == '.' || isbnWithWildcard.charAt(i) == isbn.charAt(i)) {
+                    counter++;
+                }
+            }
+
+           
+            if (books.get(isbnWithWildcard) != null) {
+                booksFound.add();
+
+            }
+        */
+        throw new BookNotFoundException("Book not found. Check ISBN again.");
     }
+    
 
     public Book getBookByTitle(String title) {
         return null;
