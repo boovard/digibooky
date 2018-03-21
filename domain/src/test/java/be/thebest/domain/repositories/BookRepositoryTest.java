@@ -1,17 +1,13 @@
 
 package be.thebest.domain.repositories;
 
-import be.thebest.domain.exception.BookNotFoundException;
+import be.thebest.domain.exception.NotFoundException;
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -61,7 +57,7 @@ public class BookRepositoryTest {
 
     @Test
     public void getBookDetails_whenBookNotFound_returnStringMessage() {
-        expectedBookException.expect(BookNotFoundException.class);
+        expectedBookException.expect(NotFoundException.class);
         expectedBookException.expectMessage("Book not found. Check ISBN again.");
         testBookRepo.getBookByIsbn("Unknown ISBN");
     }
@@ -71,7 +67,7 @@ public class BookRepositoryTest {
         assertEquals(book4, testBookRepo.getBookByIsbn("ISBN4"));
     }
 /*
-    @Test(expected = BookNotFoundException.class)
+    @Test(expected = NotFoundException.class)
     public void getBookByIsbn_whenIsbnIsNotFound_returnBookNotFoundException() {
         testBookRepo.getBookByIsbn("Unknown ISBN");
     }
