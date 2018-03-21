@@ -43,11 +43,27 @@ public class PersonRepositoryTest {
         UUID testUUID = UUID.fromString(id);
         PowerMockito.mockStatic(UUID.class);
         when(UUID.randomUUID()).thenReturn(testUUID);
-        testRepo.addMember(new Member("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen")));
+        Member testMember = new Member("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen"));
+        testRepo.addMember(testMember);
         assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.r.r.tolkien@gmail.com");
         assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("John");
         assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Tolkien");
         assertThat(testRepo.getPersonRepository().get(testUUID).getUniqueID()).isEqualTo(testUUID);
+    }
+
+    @Test
+    public void addMember_whenGivenAllDetails_shouldReturnThisMember() {
+        final String id = "493410b3-dd0b-4b78-97bf-289f50f6e74f";
+        UUID testUUID = UUID.fromString(id);
+        PowerMockito.mockStatic(UUID.class);
+        when(UUID.randomUUID()).thenReturn(testUUID);
+        Member testMember = new Member("123456789", "Tolkien", "John", "j.r.r.tolkien@gmail.com", new Address("Oxford Street", "21", "2800", "Mechelen"));
+        Member actualMember = testRepo.addMember(testMember);
+        assertThat(testRepo.getPersonRepository().get(testUUID).getEmail()).isEqualTo("j.r.r.tolkien@gmail.com");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getFirstName()).isEqualTo("John");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getLastName()).isEqualTo("Tolkien");
+        assertThat(testRepo.getPersonRepository().get(testUUID).getUniqueID()).isEqualTo(testUUID);
+        assertThat(actualMember).isEqualTo(testMember);
     }
 
     @Test

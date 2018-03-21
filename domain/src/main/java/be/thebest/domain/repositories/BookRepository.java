@@ -1,5 +1,6 @@
 package be.thebest.domain.repositories;
 
+import be.thebest.domain.exception.BookNotFoundException;
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
 import com.sun.javafx.binding.StringFormatter;
@@ -7,6 +8,8 @@ import com.sun.javafx.binding.StringFormatter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Named
 public class BookRepository {
@@ -15,13 +18,13 @@ public class BookRepository {
     @Inject
     public BookRepository() {
         Book book1 = new Book("ISBN1", "History for dummies",
-                new Author(1,"Van Reeth", "Leander"));
+                new Author(1, "Van Reeth", "Leander"));
         Book book2 = new Book("ISBN2", "Geography for dummies",
-                new Author(2,"Bouvy", "Simon"));
+                new Author(2, "Bouvy", "Simon"));
         Book book3 = new Book("ISBN3", "Javascript for dummies",
-                new Author(3,"Block", "Marie-Lynne"));
+                new Author(3, "Block", "Marie-Lynne"));
         Book book4 = new Book("ISBN4", "Biology for dummmies",
-                new Author(4,"Hermans", "Dirk"));
+                new Author(4, "Hermans", "Dirk"));
         this.books = new HashMap<>();
         books.put(book1.getIsbn(), book1);
         books.put(book2.getIsbn(), book2);
@@ -37,20 +40,24 @@ public class BookRepository {
         return Collections.unmodifiableMap(books);
     }
 
-    public String getBookDetails(String isbn) {
-        Book book = getBookByIsbn(isbn);
-        return String.format("title: %s \n Author: %s %s \n ISBN: %s",
-            book.getTitle(), book.getAuthor().getLastName(), book.getAuthor().getFirstName() , isbn);
-    }
-
     public Book getBookByIsbn(String isbn) {
-        return books.get(isbn);
+        if (books.get(isbn) != null) {
+            return books.get(isbn);
+        }
+        throw new BookNotFoundException("Book not found. Check ISBN again.");
     }
-
+}
+    /*
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
         List<Book> booksFound = new ArrayList<>();
-        return booksFound;
+
+        Pattern p = Pattern.compile("^[_A-Za-z0-9-]");
+        Matcher m = p.matcher(isbnWithWildcard);
+
     }
+}
+        //if (m.matches()));
+
 
     public Book getBookByTitle(String title) {
         return null;
@@ -84,3 +91,4 @@ public class BookRepository {
 
     }
 }
+*/

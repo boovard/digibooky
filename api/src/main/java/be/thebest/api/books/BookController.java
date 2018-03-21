@@ -3,10 +3,7 @@ package be.thebest.api.books;
 import be.thebest.domain.objects.Book;
 import be.thebest.service.BookService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,10 +24,16 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getAllBooks() {
         List<BookDto> bookDtos = new ArrayList<>();
-        for (Book book: bookService.getAllBooks()) {
+        for (Book book : bookService.getAllBooks()) {
             bookDtos.add(BookDtoMapper.bookMapper(book));
         }
         return bookDtos;
+    }
+
+    @GetMapping(path = "/{isbn}", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public BookDto getBook(@PathVariable("isbn") String isbn) {
+        return BookDtoMapper.bookMapper(bookService.getBook(isbn));
     }
 
 }
