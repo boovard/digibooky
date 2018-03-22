@@ -55,4 +55,38 @@ public class LendingRepositoryTest {
         Assertions.assertThat(lendingRepository.getLendingRepository()).doesNotContainValue(mockLending);
     }
 
+    @Test
+    public void getLentBooks_shouldReturnMapOfBooksWithDueDates() {
+        Member mockMember = mock(Member.class);
+        Lending firstMockLending = mock(Lending.class);
+        when(firstMockLending.getMember())
+                .thenReturn(mockMember);
+        when(firstMockLending.getDueDate(Lending.NORMAL_LENDING_PERIOD))
+                .thenReturn(LocalDate.now().minusDays(1));
+        when(firstMockLending.getBook())
+                .thenReturn(firstMockBook);
+        Book secondMockBook = mock(Book.class);
+        Lending secondMockLending = mock(Lending.class);
+        when(secondMockLending.getDueDate(Lending.NORMAL_LENDING_PERIOD))
+                .thenReturn(LocalDate.now().minusDays(1));
+        when(secondMockLending.getBook())
+                .thenReturn(secondMockBook);
+        when(secondMockLending.getMember())
+                .thenReturn(mockMember);
+
+        lendingRepository.addLending(firstMockLending);
+        lendingRepository.addLending(secondMockLending);
+
+        Assertions.assertThat(lendingRepository.getLentBooksByMember(mockMember).keySet())
+                .containsExactlyInAnyOrder(firstMockBook, secondMockBook);
+        Assertions.assertThat(lendingRepository.getLentBooksByMember(mockMember).values())
+                .containsExactlyInAnyOrder(firstMockLending.getDueDate(Lending.NORMAL_LENDING_PERIOD), secondMockLending.getDueDate(Lending.NORMAL_LENDING_PERIOD));
+    }
+
+    @Test
+    public void getLentBooks_whenNoLendingsForThisMember_shouldReturnEmptyMap() {
+        Member mockMember = mock(Member.class);
+        Assertions.assertThat(lendingRepository.getLentBooksByMember(mockMember)).isEmpty();
+    }
+
 }

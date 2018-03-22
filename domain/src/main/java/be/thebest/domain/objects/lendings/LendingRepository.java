@@ -3,12 +3,15 @@ package be.thebest.domain.objects.lendings;
 import be.thebest.domain.exception.LendingException;
 import be.thebest.domain.objects.Book;
 import be.thebest.domain.objects.lendings.Lending;
+import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.repositories.BookRepository;
 
 import javax.inject.Named;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Named
 public class LendingRepository {
@@ -38,6 +41,14 @@ public class LendingRepository {
 
     public void removeLending(Long lendingId) {
         lendingRepository.remove(lendingId);
+    }
+
+    public Map<Book, LocalDate> getLentBooksByMember(Member member) {
+        Map<Long, Lending> filteredLendings = lendingRepository.entrySet().stream()
+                .filter(entry -> entry.getValue().getMember().equals(member))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return filteredLendings.values().stream()
+                .collect(Collectors.toMap(Lending::getBook, lending -> lending.getDueDate(Lending.NORMAL_LENDING_PERIOD)));
     }
 
     public Lending getLending(Long lendingId) {

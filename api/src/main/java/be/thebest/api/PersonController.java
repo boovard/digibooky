@@ -37,7 +37,7 @@ public class PersonController {
     @GetMapping(path = "/members", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<MemberDto> getMembers() {
-        return personService.getMembers().stream()
+        return personService.getMembers().values().stream()
                 .map(memberMapper::toDto)
                 .collect(Collectors.toList());
     }
