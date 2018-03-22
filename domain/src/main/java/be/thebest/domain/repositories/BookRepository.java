@@ -76,7 +76,7 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
-    /*
+
     // Title
     public Book getBookByTitle(String title) {
         if (books.get(title) != null) {
@@ -101,7 +101,7 @@ public class BookRepository {
     }
 
     private String createRegexExpressionForWildcardTitle(String title) {
-        String regexToReplaceWildcard = "[A-Za-z0-9]{1}";
+        String regexToReplaceWildcard = "[-A-Za-z0-9\\s.]{1}";
         String regexExpression = "^";
         for (int i = 0; i < title.length(); i++) {
             if (title.charAt(i) == '.') {
@@ -112,7 +112,6 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
-    */
 
 }
 

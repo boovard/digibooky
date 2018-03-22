@@ -108,7 +108,7 @@ public class BookRepositoryTest {
         testBooks.add(book4);
         assertTrue(testBooks.containsAll(testBookRepo.getBookByIsbnWithWildCard(".....")));
     }
-    /*
+
     // Title
     @Test
     public void getBookByTitle_whenFullTitleIsProvidedAndCorrect_returnTheBook() {
@@ -153,6 +153,6 @@ public class BookRepositoryTest {
         testBooks.add(book4);
         assertTrue(testBooks.containsAll(testBookRepo.getBookByTitleWithWildCard(".....")));
     }
-    */
+
 
 }
