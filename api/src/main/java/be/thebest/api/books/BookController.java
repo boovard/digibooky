@@ -35,6 +35,7 @@ public class BookController {
         return bookDtos;
     }
 
+    // ISBN
     @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getBooksByIsbn(@PathVariable("isbn") String isbn) {
@@ -46,6 +47,21 @@ public class BookController {
             return booksFound;
         }
         booksFound.add(bookMapper.toDto(bookService.getBookByIsbn(isbn)));
+        return booksFound;
+    }
+
+    // Title
+    @GetMapping(path = "/{title}", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDto> getBooksByTitle(@PathVariable("title") String title) {
+        List<BookDto> booksFound = new ArrayList<>();
+        if (title.contains(".")) {
+            for (Book book : bookService.getBookByTitleWithWildCard(title)) {
+                booksFound.add(bookMapper.toDto(book));
+            }
+            return booksFound;
+        }
+        booksFound.add(bookMapper.toDto(bookService.getBookByTitle(title)));
         return booksFound;
     }
 
