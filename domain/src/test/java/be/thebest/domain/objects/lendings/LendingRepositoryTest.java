@@ -7,24 +7,20 @@ import be.thebest.domain.repositories.BookRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.time.LocalDate;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class LendingRepositoryTest {
     private LendingRepository lendingRepository;
-    private BookRepository mockBookRepo;
     private Member mockMember;
+    private Book firstMockBook;
 
     @Before
     public void setUp() {
         mockMember = mock(Member.class);
-        mockBookRepo = mock(BookRepository.class);
-        lendingRepository = new LendingRepository(mockBookRepo);
-        Book firstMockBook = mock(Book.class);
-        when(mockBookRepo.getBookByIsbn("1")).thenReturn(firstMockBook);
+        lendingRepository = new LendingRepository();
+        firstMockBook = mock(Book.class);
     }
 
     @Test
@@ -45,7 +41,7 @@ public class LendingRepositoryTest {
 
     @Test
     public void addLending_shouldSetLendingId() {
-        Lending testLending = new Lending(mockBookRepo.getBookByIsbn("1"), mockMember, LocalDate.now());
+        Lending testLending = new Lending(firstMockBook, mockMember, LocalDate.now());
         lendingRepository.addLending(testLending);
 
         Assertions.assertThat(testLending.getLendingId()).isEqualTo(lendingRepository.getLendingCounter() - 1);

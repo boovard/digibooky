@@ -13,12 +13,10 @@ import java.util.Map;
 @Named
 public class LendingRepository {
     private Map<Long, Lending> lendingRepository;
-    private BookRepository bookRepository;
     private Long lendingCounter;
 
-    public LendingRepository(BookRepository bookRepository) {
+    public LendingRepository() {
         this.lendingRepository = new HashMap<>();
-        this.bookRepository = bookRepository;
         this.lendingCounter = 0L;
     }
 
