@@ -91,6 +91,12 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
+
+//    DO NOT USE OUTSIDE OF TESTS
+    public void clearBookRepository(){
+        books.clear();
+    }
+
     /*
     // Title
     public Book getBookByTitle(String title) {

@@ -20,7 +20,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {TestApplication.class})
-public class DigibookyControllerIntegrationTest {
+public class PersonControllerIntegrationTest {
     private Member leander;
     private Member simon;
     private Member dirk;
