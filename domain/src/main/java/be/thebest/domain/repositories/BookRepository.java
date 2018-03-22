@@ -35,15 +35,17 @@ public class BookRepository {
         books.put(book.getIsbn(), book);
     }
 
+    public Book updateBook(String isbn, Book updatedBook){
+        books.put(isbn, updatedBook);
+        return updatedBook;
+    }
+
     public Map<String, Book> getAllBooks() {
         return Collections.unmodifiableMap(books);
     }
 
     public Book getBookByIsbn(String isbn) {
-        if (books.get(isbn) != null) {
-            return books.get(isbn);
-        }
-        throw new NotFoundException("Book not found. Check ISBN again.");
+        return books.get(isbn);
     }
 
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {

@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class BookController {
     @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public BookDto getBook(@PathVariable("isbn") String isbn) {
-        return BookDtoMapper.bookMapper(bookService.getBook(isbn));
+        return BookDtoMapper.bookMapper(bookService.getBookByIsbn(isbn));
     }
 
 }

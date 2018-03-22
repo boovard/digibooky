@@ -21,8 +21,16 @@ public class Book {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Author getAuthor() {
         return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override
