@@ -54,4 +54,10 @@ public class BookController {
     public BookDto registerNewBook(BookDto bookDto){
         return bookMapper.toDto(bookService.registerNewBook(bookMapper.toDomain(bookDto)));
     }
+
+    @PutMapping(path = "/{isbn}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public BookDto updateBook(BookDto bookDto){
+        return bookMapper.toDto(bookService.updateBook(bookMapper.toDomain(bookDto)));
+    }
 }

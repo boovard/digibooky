@@ -35,8 +35,8 @@ public class BookRepository {
         books.put(book.getIsbn(), book);
     }
 
-    public Book updateBook(String isbn, Book updatedBook){
-        books.put(isbn, updatedBook);
+    public Book updateBook(Book updatedBook){
+        books.put(updatedBook.getIsbn(), updatedBook);
         return updatedBook;
     }
 
