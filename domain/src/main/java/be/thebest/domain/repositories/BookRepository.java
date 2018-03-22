@@ -39,9 +39,12 @@ public class BookRepository {
         return Collections.unmodifiableMap(books);
     }
 
-    public Book getBookByIsbn(String isbn) {
+    // ISBN
+    public List<Book> getBookByIsbn(String isbn) {
+        List<Book> booksFound = new ArrayList<>();
         if (books.get(isbn) != null) {
-            return books.get(isbn);
+            booksFound.add(books.get(isbn));
+            return booksFound;
         }
         throw new NotFoundException("Book not found. Check ISBN again.");
     }
@@ -73,5 +76,43 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
+    /*
+    // Title
+    public Book getBookByTitle(String title) {
+        if (books.get(title) != null) {
+            return books.get(title);
+        }
+        throw new NotFoundException("Book not found. Check Title again.");
+    }
+
+    public List<Book> getBookByTitleWithWildCard(String titleWithWildcard) {
+        String isbnRegex = createRegexExpressionForWildcardIsbn(titleWithWildcard);
+        List<Book> booksFound = new ArrayList<>();
+
+        Pattern p = Pattern.compile(isbnRegex);
+
+        for (String title : books.keySet()) {
+            Matcher m = p.matcher(title);
+            if (m.matches()) {
+                booksFound.add(books.get(title));
+            }
+        }
+        return booksFound;
+    }
+
+    private String createRegexExpressionForWildcardTitle(String title) {
+        String regexToReplaceWildcard = "[A-Za-z0-9]{1}";
+        String regexExpression = "^";
+        for (int i = 0; i < title.length(); i++) {
+            if (title.charAt(i) == '.') {
+                regexExpression = regexExpression + regexToReplaceWildcard;
+            } else {
+                regexExpression = regexExpression + title.charAt(i);
+            }
+        }
+        return regexExpression + '$';
+    }
+    */
+
 }
 
