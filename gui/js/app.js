@@ -114,7 +114,7 @@ function addARandomBook() {
                 showAllBooks();
             },
             error: function (data) {
-                showDialog("Something went wrong: <br/>" + (data.responseJSON ? data.responseJSON.message : data.responseText))
+                showDialog("Something went wrong: <br/>" + data.responseJSON.message)
             },
             contentType: "application/json",
             dataType: 'json'
@@ -145,7 +145,7 @@ function getAndRenderBooks(url) {
             console.log("--> I'm done (successfully)");
         })
         .fail(function (data) {
-            showDialog("Something went wrong: <br/>" + (data.responseJSON ? data.responseJSON.message : data.responseText))
+            showDialog("Something went wrong: <br/>" + data.responseJSON.message)
         })
         .always(function () {
             console.log("--> finalized...");

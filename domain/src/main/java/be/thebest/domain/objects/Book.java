@@ -29,6 +29,7 @@ public class Book {
         return author;
     }
 
+
     public void setAuthor(Author author) {
         this.author = author;
     }
@@ -48,4 +49,5 @@ public class Book {
 
         return Objects.hash(isbn, title, author);
     }
+
 }
