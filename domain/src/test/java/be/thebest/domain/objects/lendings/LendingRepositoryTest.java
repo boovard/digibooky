@@ -2,7 +2,6 @@ package be.thebest.domain.objects.lendings;
 
 import be.thebest.domain.objects.Book;
 import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.repositories.BookRepository;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
