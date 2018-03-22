@@ -36,6 +36,14 @@ public class LendingRepository {
                 .anyMatch(lending -> lending.getBook().equals(bookToLend));
     }
 
+    public void removeLending(Long lendingId) {
+        lendingRepository.remove(lendingId);
+    }
+
+    public Lending getLending(Long lendingId) {
+        return lendingRepository.get(lendingId);
+    }
+
     public void clear() {
         lendingRepository.clear();
     }

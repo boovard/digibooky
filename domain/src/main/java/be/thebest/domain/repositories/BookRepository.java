@@ -10,6 +10,7 @@ import javax.inject.Named;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Named
 public class BookRepository {
@@ -42,8 +43,23 @@ public class BookRepository {
         return updatedBook;
     }
 
+    public void deleteBook(String isbn) {
+        books.get(isbn).setAvailability(false);
+    }
+
+    public Book restoreBook(String isbn) {
+        books.get(isbn).setAvailability(true);
+        return books.get(isbn);
+    }
+
     public Map<String, Book> getAllBooks() {
         return Collections.unmodifiableMap(books);
+    }
+
+    public Map<String, Book> getAllAvailableBooks() {
+        return books.entrySet().stream()
+                .filter(entry -> entry.getValue().getAvailability())
+                .collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
     }
 
     public Book getBookByIsbn(String isbn) {

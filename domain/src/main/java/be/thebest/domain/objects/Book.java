@@ -6,11 +6,13 @@ public class Book {
     private String isbn;
     private String title;
     private Author author;
+    private Boolean availability;
 
     public Book(String isbn, String title, Author author) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
+        availability = true;
     }
 
     public String getIsbn() {
@@ -32,6 +34,14 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public Boolean getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(Boolean availability) {
+        this.availability = availability;
     }
 
     @Override
