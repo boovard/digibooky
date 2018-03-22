@@ -1,5 +1,6 @@
 package be.thebest.domain.repositories;
 
+import be.thebest.domain.exception.NotFoundException;
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
 
@@ -44,7 +45,10 @@ public class BookRepository {
     }
 
     public Book getBookByIsbn(String isbn) {
-        return books.get(isbn);
+        if (books.get(isbn) != null) {
+            return books.get(isbn);
+        }
+        throw new NotFoundException("Book not found. Check ISBN again.");
     }
 
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
@@ -75,6 +79,7 @@ public class BookRepository {
         return regexExpression + '$';
     }
     /*
+
     // Title
     public Book getBookByTitle(String title) {
         if (books.get(title) != null) {
@@ -99,7 +104,7 @@ public class BookRepository {
     }
 
     private String createRegexExpressionForWildcardTitle(String title) {
-        String regexToReplaceWildcard = "[A-Za-z0-9]{1}";
+        String regexToReplaceWildcard = "[-A-Za-z0-9\\s.]{1}";
         String regexExpression = "^";
         for (int i = 0; i < title.length(); i++) {
             if (title.charAt(i) == '.') {
@@ -111,6 +116,5 @@ public class BookRepository {
         return regexExpression + '$';
     }
     */
-
 }
 

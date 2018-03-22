@@ -14,12 +14,22 @@ public class BookDto {
         this.authorDto = authorDto;
     }
 
+    public BookDto withIsbn(String isbn){
+        this.isbn = isbn;
+        return this;
+    }
+
     public String getIsbn() {
         return isbn;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public BookDto withTitle(String title){
+        this.title = title;
+        return this;
     }
 
     public AuthorDto getAuthorDto() {

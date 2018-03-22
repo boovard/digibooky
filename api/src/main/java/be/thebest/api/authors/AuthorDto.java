@@ -5,21 +5,35 @@ public class AuthorDto {
     private String lastName;
     private String firstName;
 
-    public AuthorDto(int authorId, String lastName, String firstName) {
-        this.authorId = authorId;
-        this.lastName = lastName;
-        this.firstName = firstName;
+
+    public static AuthorDto authorDto(){
+        return new AuthorDto();
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public AuthorDto withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
+    public AuthorDto withFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
     public int getAuthorId() {
         return authorId;
+    }
+
+    public AuthorDto withAuthorId(int authorId){
+        this.authorId = authorId;
+        return this;
     }
 }
