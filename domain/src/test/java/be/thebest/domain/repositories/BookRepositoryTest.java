@@ -52,6 +52,7 @@ public class BookRepositoryTest {
         testBookRepo.registerNewBook(book5);
         testBookRepo.registerNewBook(book6);
         testBookRepo.registerNewBook(book7);
+        testBookRepo.registerNewBook(book8);
     }
 
     @Test
@@ -105,11 +106,11 @@ public class BookRepositoryTest {
         assertTrue(testBooks.containsAll(testBookRepo.getBookByIsbnWithWildCard(".....")));
     }
 
-    /*
+
     // Title
     @Test
     public void getBookByTitle_whenFullTitleIsProvidedAndCorrect_returnTheBook() {
-        assertEquals(book4, testBookRepo.getBookByTitle("Title4"));
+        assertEquals(book8, testBookRepo.getBookByTitle("Harry Potter"));
     }
 
     @Test(expected = NotFoundException.class)
@@ -135,7 +136,7 @@ public class BookRepositoryTest {
     @Test
     public void getBookByTitle_whenProvidedTwoWildCardsForCharacterInTheMiddle_returnCorrespondingListOfBooks() {
         List<Book> testBooks = new ArrayList<>();
-        testBooks.add(book8);
+        testBooks.add(book7);
         testBooks.add(book8);
         assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("Har.y..otter"));
     }
@@ -151,5 +152,4 @@ public class BookRepositoryTest {
         testBooks.add(book8);
         assertTrue(testBooks.containsAll(testBookRepo.getBookByTitleWithWildCard(".....")));
     }
-    */
 }

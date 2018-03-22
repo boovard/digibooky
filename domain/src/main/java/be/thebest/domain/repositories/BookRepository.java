@@ -78,7 +78,7 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
-    /*
+
     // Title
     public Book getBookByTitle(String title) {
         if (books.get(title) != null) {
@@ -114,6 +114,6 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
-    */
+
 }
 
