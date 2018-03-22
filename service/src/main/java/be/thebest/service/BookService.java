@@ -22,10 +22,7 @@ public class BookService {
         return new ArrayList<>(bookRepository.getAllBooks().values());
     }
 
-    public List<Book> getBook(String isbn) {
-        if (isbn.contains(".")) {
-            return bookRepository.getBookByIsbnWithWildCard(isbn);
-        }
+    public Book getBook(String isbn) {
         return bookRepository.getBookByIsbn(isbn);
     }
 }

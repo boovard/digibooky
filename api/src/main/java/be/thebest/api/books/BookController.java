@@ -32,12 +32,8 @@ public class BookController {
 
     @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> getBook(@PathVariable("isbn") String isbn) {
-        List<BookDto> bookDtoList = new ArrayList<>();
-        for (Book book: bookService.getBook(isbn)) {
-            bookDtoList.add(BookDtoMapper.bookMapper(book));
-        }
-        return bookDtoList;
+    public BookDto getBook(@PathVariable("isbn") String isbn) {
+        return BookDtoMapper.bookMapper(bookService.getBook(isbn));
     }
 
 }

@@ -39,12 +39,9 @@ public class BookRepository {
         return Collections.unmodifiableMap(books);
     }
 
-    // ISBN
-    public List<Book> getBookByIsbn(String isbn) {
-        List<Book> booksFound = new ArrayList<>();
+    public Book getBookByIsbn(String isbn) {
         if (books.get(isbn) != null) {
-            booksFound.add(books.get(isbn));
-            return booksFound;
+            return books.get(isbn);
         }
         throw new NotFoundException("Book not found. Check ISBN again.");
     }
@@ -76,6 +73,7 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
+<<<<<<< HEAD
 
     // Title
     public Book getBookByTitle(String title) {
@@ -113,5 +111,7 @@ public class BookRepository {
         return regexExpression + '$';
     }
 
+=======
+>>>>>>> parent of 651826d... Story 3 done : Book -> BookDtoList
 }
 
