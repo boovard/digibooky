@@ -1,8 +1,8 @@
 package be.thebest.api;
 
-import be.thebest.api.books.BookDtoMapper;
+import be.thebest.api.books.BookMapper;
 
 public class LendingMapper {
-    private BookDtoMapper bookMapper;
+    private BookMapper bookMapper;
     private MemberMapper memberMapper;
 }
