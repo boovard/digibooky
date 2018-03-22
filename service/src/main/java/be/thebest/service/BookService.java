@@ -20,6 +20,7 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
+    // ISBN
     public List<Book> getAllBooks() {
         return new ArrayList<>(bookRepository.getAllBooks().values());
     }
@@ -37,6 +38,12 @@ public class BookService {
         assertIsbnIsNotUsed(book.getIsbn());
         bookRepository.registerNewBook(book);
         return book;
+    }
+
+    public Book updateBook(Book bookToUpdate){
+        assertIsbnIsNotUsed(bookToUpdate.getIsbn());
+        bookRepository.updateBook(bookToUpdate);
+        return bookToUpdate;
     }
 
     private void assertIsbnIsPresent(String isbn) {

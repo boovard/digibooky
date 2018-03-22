@@ -36,8 +36,9 @@ public class BookRepository {
         books.put(book.getIsbn(), book);
     }
 
-    public Book updateBook(String isbn, Book updatedBook) {
-        books.put(isbn, updatedBook);
+
+    public Book updateBook(Book updatedBook) {
+        books.put(updatedBook.getIsbn(), updatedBook);
         return updatedBook;
     }
 
@@ -78,7 +79,7 @@ public class BookRepository {
     }
 
     // Title
-    public Book getBookByTitle(String title) {
+    public Book getBookByAuthor(String title) {
         if (books != null) {
             for (String isbn : books.keySet()) {
                 if (books.get(isbn).getTitle().equals(title)) {
@@ -117,6 +118,4 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
-
 }
-

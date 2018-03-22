@@ -96,19 +96,12 @@ public class BookRepositoryTest {
         assertEquals(testBooks, testBookRepo.getBookByIsbnWithWildCard("Wildca...ISBN"));
     }
 
-//    @Test
-//    public void getBookByIsbn_whenProvidedOnlyWildCards_returnAllBooks() {
-//        List<Book> testBooks = new ArrayList<Book>();
-//        List<Book> testBookRepoList = new ArrayList<Book>(testBookRepo.getAllBooks().values());
-//        testBooks.add(book0);
-//        testBooks.add(book1);
-//        testBooks.add(book2);
-//        testBooks.add(book3);
-//        testBooks.add(book4);
-//        testBooks.add(book8);
-//        assertTrue(testBookRepoList.containsAll(testBooks) &&  testBooks.containsAll(testBookRepoList));
-//    }
-
+    @Test
+    public void getBookByIsbn_whenProvidedOnlyWildCards_returnAllBooks() {
+        List<Book> testBooks = new ArrayList<>();
+        testBooks.add(book8);
+        assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("............"));
+    }
 
     // Title
     @Test
@@ -124,7 +117,6 @@ public class BookRepositoryTest {
     @Test
     public void getBookByTitle_whenProvidedAWildCardForTheFirstCharacter_returnCorrespondingListOfBooks() {
         List<Book> testBooks = new ArrayList<>();
-        testBooks.add(book5);
         testBooks.add(book8);
         assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard(".arry Potter"));
     }
@@ -146,12 +138,7 @@ public class BookRepositoryTest {
     @Test
     public void getBookByTitle_whenProvidedOnlyWildCards_returnAllBooks() {
         List<Book> testBooks = new ArrayList<>();
-        testBooks.add(book0);
-        testBooks.add(book1);
-        testBooks.add(book2);
-        testBooks.add(book3);
-        testBooks.add(book4);
         testBooks.add(book8);
-        assertTrue(testBooks.containsAll(testBookRepo.getBookByTitleWithWildCard(".....")));
+        assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("............"));
     }
 }
