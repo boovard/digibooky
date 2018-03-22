@@ -8,10 +8,8 @@ public class BookDto {
     private String title;
     private AuthorDto authorDto;
 
-    public BookDto(String isbn, String title, AuthorDto authorDto) {
-        this.isbn = isbn;
-        this.title = title;
-        this.authorDto = authorDto;
+    public static BookDto bookDto(){
+        return new BookDto();
     }
 
     public BookDto withIsbn(String isbn){
@@ -34,6 +32,11 @@ public class BookDto {
 
     public AuthorDto getAuthorDto() {
         return authorDto;
+    }
+
+    public BookDto withAuthorDto(AuthorDto authorDto) {
+        this.authorDto = authorDto;
+        return this;
     }
 
 }
