@@ -39,6 +39,12 @@ public class BookService {
         return book;
     }
 
+    public Book updateBook(Book bookToUpdate){
+        assertIsbnIsNotUsed(bookToUpdate.getIsbn());
+        bookRepository.updateBook(bookToUpdate);
+        return bookToUpdate;
+    }
+
     private void assertIsbnIsPresent(String isbn) {
         if (bookRepository.getAllBooks().get(isbn) == null) {
             throw new NotFoundException("This ISBN does not match any book");

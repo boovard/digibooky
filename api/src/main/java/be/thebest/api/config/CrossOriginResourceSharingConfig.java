@@ -28,7 +28,8 @@ public class CrossOriginResourceSharingConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping(ALLOWED_PATH_MAPPINGS)
-                        .allowedOrigins(ALLOWED_ORIGINS);
+                        .allowedOrigins(ALLOWED_ORIGINS)
+                        .allowedMethods("*");
             }
         };
     }
