@@ -13,10 +13,12 @@ import java.util.List;
 @RestController
 public class BookController {
     private BookService bookService;
+    private BookMapper bookMapper;
 
     @Inject
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, BookMapper bookMapper) {
         this.bookService = bookService;
+        this.bookMapper = bookMapper;
     }
 
     @GetMapping(produces = "application/json")
@@ -24,7 +26,7 @@ public class BookController {
     public List<BookDto> getAllBooks() {
         List<BookDto> bookDtos = new ArrayList<>();
         for (Book book : bookService.getAllBooks()) {
-            bookDtos.add(BookMapper.toDto(book));
+            bookDtos.add(bookMapper.toDto(book));
         }
         return bookDtos;
     }
@@ -32,7 +34,7 @@ public class BookController {
     @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public BookDto getBook(@PathVariable("isbn") String isbn) {
-        return BookMapper.toDto(bookService.getBookByIsbn(isbn));
+        return bookMapper.toDto(bookService.getBookByIsbn(isbn));
     }
 
 }
