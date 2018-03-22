@@ -3,17 +3,18 @@ package be.thebest.domain.repositories;
 import be.thebest.domain.exception.NotFoundException;
 import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
+import org.assertj.core.api.Assertions;
+import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.hamcrest.CoreMatchers;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class BookRepositoryTest {
@@ -52,6 +53,7 @@ public class BookRepositoryTest {
         testBookRepo.registerNewBook(book5);
         testBookRepo.registerNewBook(book6);
         testBookRepo.registerNewBook(book7);
+        testBookRepo.registerNewBook(book8);
     }
 
 //    @Test
@@ -97,19 +99,14 @@ public class BookRepositoryTest {
     @Test
     public void getBookByIsbn_whenProvidedOnlyWildCards_returnAllBooks() {
         List<Book> testBooks = new ArrayList<>();
-        testBooks.add(book0);
-        testBooks.add(book1);
-        testBooks.add(book2);
-        testBooks.add(book3);
-        testBooks.add(book4);
-        assertTrue(testBooks.containsAll(testBookRepo.getBookByIsbnWithWildCard(".....")));
+        testBooks.add(book8);
+        assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("............"));
     }
 
-    /*
     // Title
     @Test
     public void getBookByTitle_whenFullTitleIsProvidedAndCorrect_returnTheBook() {
-        assertEquals(book4, testBookRepo.getBookByTitle("Title4"));
+        assertEquals(book8, testBookRepo.getBookByTitle("Harry Potter"));
     }
 
     @Test(expected = NotFoundException.class)
@@ -120,7 +117,6 @@ public class BookRepositoryTest {
     @Test
     public void getBookByTitle_whenProvidedAWildCardForTheFirstCharacter_returnCorrespondingListOfBooks() {
         List<Book> testBooks = new ArrayList<>();
-        testBooks.add(book5);
         testBooks.add(book8);
         assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard(".arry Potter"));
     }
@@ -136,20 +132,13 @@ public class BookRepositoryTest {
     public void getBookByTitle_whenProvidedTwoWildCardsForCharacterInTheMiddle_returnCorrespondingListOfBooks() {
         List<Book> testBooks = new ArrayList<>();
         testBooks.add(book8);
-        testBooks.add(book8);
         assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("Har.y..otter"));
     }
 
     @Test
     public void getBookByTitle_whenProvidedOnlyWildCards_returnAllBooks() {
         List<Book> testBooks = new ArrayList<>();
-        testBooks.add(book0);
-        testBooks.add(book1);
-        testBooks.add(book2);
-        testBooks.add(book3);
-        testBooks.add(book4);
         testBooks.add(book8);
-        assertTrue(testBooks.containsAll(testBookRepo.getBookByTitleWithWildCard(".....")));
+        assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("............"));
     }
-    */
 }
