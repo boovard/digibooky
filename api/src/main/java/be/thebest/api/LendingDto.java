@@ -7,7 +7,9 @@ import java.time.LocalDate;
 public class LendingDto {
     private BookDto bookDto;
     private MemberDto memberDto;
-    private LocalDate lendingDate;
+    private int lendingDateYear;
+    private int lendingDateMonth;
+    private int lendingDateDay;
     private Long lendingId;
 
     public static LendingDto lendingDto() {
@@ -24,8 +26,18 @@ public class LendingDto {
         return this;
     }
 
-    public LendingDto withLendingDate(LocalDate lendingDate) {
-        this.lendingDate = lendingDate;
+    public LendingDto withlendingDateYear(int lendingDateYear) {
+        this.lendingDateYear = lendingDateYear;
+        return this;
+    }
+
+    public LendingDto withlendingDateMonth(int lendingDateMonth) {
+        this.lendingDateMonth = lendingDateMonth;
+        return this;
+    }
+
+    public LendingDto withlendingDateDay(int lendingDateDay) {
+        this.lendingDateDay = lendingDateDay;
         return this;
     }
 
@@ -42,8 +54,16 @@ public class LendingDto {
         return memberDto;
     }
 
-    public LocalDate getLendingDate() {
-        return lendingDate;
+    public int getLendingDateYear() {
+        return lendingDateYear;
+    }
+
+    public int getLendingDateMonth() {
+        return lendingDateMonth;
+    }
+
+    public int getLendingDateDay() {
+        return lendingDateDay;
     }
 
     public Long getLendingId() {
