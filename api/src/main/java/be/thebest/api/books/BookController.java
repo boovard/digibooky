@@ -32,8 +32,16 @@ public class BookController {
 
     @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public BookDto getBook(@PathVariable("isbn") String isbn) {
-        return BookDtoMapper.bookMapper(bookService.getBook(isbn));
+    public List<BookDto> getBooksByIsbn(@PathVariable("isbn") String isbn) {
+        List<BookDto> booksFound = new ArrayList<>();
+        if (isbn.contains(".")) {
+            for (Book book: bookService.getBookByIsbnWithWildCard(isbn)) {
+                booksFound.add(BookDtoMapper.bookMapper(book));
+            }
+             return booksFound;
+        }
+        booksFound.add(BookDtoMapper.bookMapper(bookService.getBookByIsbn(isbn)));
+        return booksFound;
     }
 
 }
