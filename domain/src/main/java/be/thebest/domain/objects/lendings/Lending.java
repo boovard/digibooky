@@ -65,6 +65,10 @@ public class Lending {
         private LocalDate lendingDate;
         private Long lendingId;
 
+        public static LendingBuilder lending() {
+            return new LendingBuilder();
+        }
+
         public LendingBuilder withBook(Book book) {
             this.book = book;
             return this;
