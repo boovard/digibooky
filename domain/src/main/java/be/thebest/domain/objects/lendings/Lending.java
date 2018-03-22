@@ -11,6 +11,7 @@ public class Lending {
     private Book book;
     private Person person;
     private LocalDate lendingDate;
+    private long lendingId;
     public static final long NORMAL_LENDING_PERIOD = 3;
 
     public Lending(Book book, Person person, LocalDate lendingDate) {
@@ -33,6 +34,14 @@ public class Lending {
 
     public LocalDate getDueDate(long period) {
         return this.lendingDate.plusWeeks(NORMAL_LENDING_PERIOD);
+    }
+
+    public void setLendingId(long lendingId) {
+        this.lendingId = lendingId;
+    }
+
+    public long getLendingId() {
+        return lendingId;
     }
 
     @Override
