@@ -35,6 +35,11 @@ public class BookRepository {
         books.put(book.getIsbn(), book);
     }
 
+    public Book updateBook(String isbn, Book updatedBook){
+        books.put(isbn, updatedBook);
+        return updatedBook;
+    }
+
     public Map<String, Book> getAllBooks() {
         return Collections.unmodifiableMap(books);
     }

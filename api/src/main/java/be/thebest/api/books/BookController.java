@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class BookController {
     public List<BookDto> getAllBooks() {
         List<BookDto> bookDtos = new ArrayList<>();
         for (Book book : bookService.getAllBooks()) {
-            bookDtos.add(BookDtoMapper.bookMapper(book));
+            bookDtos.add(BookMapper.bookMapper(book));
         }
         return bookDtos;
     }
@@ -33,7 +32,7 @@ public class BookController {
     @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public BookDto getBook(@PathVariable("isbn") String isbn) {
-        return BookDtoMapper.bookMapper(bookService.getBook(isbn));
+        return BookMapper.bookMapper(bookService.getBookByIsbn(isbn));
     }
 
 }
