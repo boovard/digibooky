@@ -1,6 +1,5 @@
 package be.thebest.domain.objects.lendings;
 
-
 import be.thebest.domain.objects.Book;
 import be.thebest.domain.objects.persons.Person;
 

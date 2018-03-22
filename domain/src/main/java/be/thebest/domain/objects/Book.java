@@ -1,7 +1,5 @@
 package be.thebest.domain.objects;
 
-import java.util.Objects;
-
 public class Book {
     private String isbn;
     private String title;

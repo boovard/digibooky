@@ -1,18 +1,15 @@
 package be.thebest.domain.objects.lendings;
 
-import be.thebest.domain.exception.LendingException;
-import be.thebest.domain.objects.Author;
 import be.thebest.domain.objects.Book;
 import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.repositories.BookRepository;
+
 import org.assertj.core.api.Assertions;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.time.LocalDate;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -28,11 +25,6 @@ public class LendingRepositoryTest {
         lendingRepository = new LendingRepository(mockBookRepo);
         Book firstMockBook = mock(Book.class);
         when(mockBookRepo.getBookByIsbn("1")).thenReturn(firstMockBook);
-    }
-
-    @After
-    public void breakDown() {
-        lendingRepository.clear();
     }
 
     @Test

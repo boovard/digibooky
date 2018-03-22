@@ -1,6 +1,5 @@
 package be.thebest.api;
 
-import be.thebest.domain.exception.ManagementException;
 import be.thebest.domain.exception.NotFoundException;
 import be.thebest.domain.exception.IllegalFieldException;
 import be.thebest.domain.exception.LendingException;
@@ -31,12 +30,4 @@ public class ControllerAdvice {
                 exception.getMessage(),
                 HttpStatus.UNAUTHORIZED);
     }
-
-    @ExceptionHandler(ManagementException.class)
-    public ResponseEntity<String> convertManagementException(final ManagementException exception){
-        return new ResponseEntity<>(
-                exception.getMessage(),
-                HttpStatus.NOT_ACCEPTABLE);
-    }
-
 }
