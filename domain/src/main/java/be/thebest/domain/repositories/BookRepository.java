@@ -73,7 +73,7 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
-<<<<<<< HEAD
+    /*
 
     // Title
     public Book getBookByTitle(String title) {
@@ -110,8 +110,6 @@ public class BookRepository {
         }
         return regexExpression + '$';
     }
-
-=======
->>>>>>> parent of 651826d... Story 3 done : Book -> BookDtoList
+    */
 }
 

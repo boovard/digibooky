@@ -102,9 +102,9 @@ public class BookRepositoryTest {
         testBooks.add(book4);
         assertTrue(testBooks.containsAll(testBookRepo.getBookByIsbnWithWildCard(".....")));
     }
-<<<<<<< HEAD
 
     // Title
+    /*
     @Test
     public void getBookByTitle_whenFullTitleIsProvidedAndCorrect_returnTheBook() {
         assertEquals(book4, testBookRepo.getBookByTitle("Title4"));
@@ -148,8 +148,5 @@ public class BookRepositoryTest {
         testBooks.add(book4);
         assertTrue(testBooks.containsAll(testBookRepo.getBookByTitleWithWildCard(".....")));
     }
-
-
-=======
->>>>>>> parent of 651826d... Story 3 done : Book -> BookDtoList
+    */
 }
