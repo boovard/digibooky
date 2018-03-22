@@ -77,13 +77,13 @@ public class BookController {
         return bookMapper.toDto(bookService.updateBook(bookMapper.toDomain(bookDto)));
     }
 
-    @DeleteMapping(path = "/{isbn}/delete")
+    @DeleteMapping(path = "/{isbn}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBook(@PathVariable("isbn") String isbn) {
         bookService.deleteBook(isbn);
     }
 
-    @PutMapping(path = "/{isbn}/restore")
+    @PutMapping(path = "/{isbn}")
     @ResponseStatus(HttpStatus.OK)
     public BookDto restoreBook(@RequestBody String isbn){
         return bookMapper.toDto(bookService.restoreBook(isbn));
