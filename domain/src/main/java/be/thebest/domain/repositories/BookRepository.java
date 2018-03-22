@@ -45,10 +45,7 @@ public class BookRepository {
     }
 
     public Book getBookByIsbn(String isbn) {
-        if (books.get(isbn) != null) {
-            return books.get(isbn);
-        }
-        throw new NotFoundException("Book not found. Check ISBN again.");
+        return books.get(isbn);
     }
 
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
@@ -79,7 +76,6 @@ public class BookRepository {
         return regexExpression + '$';
     }
     /*
-
     // Title
     public Book getBookByTitle(String title) {
         if (books.get(title) != null) {

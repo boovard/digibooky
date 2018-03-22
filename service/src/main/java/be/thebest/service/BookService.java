@@ -29,20 +29,24 @@ public class BookService {
         return bookRepository.getBookByIsbn(isbn);
     }
 
-    public Book registerNewBook(Book book){
+    public List<Book> getBookByIsbnWithWildCard(String isbnWithWildCard) {
+        return bookRepository.getBookByIsbnWithWildCard(isbnWithWildCard);
+    }
+
+    public Book registerNewBook(Book book) {
         assertIsbnIsNotUsed(book.getIsbn());
         bookRepository.registerNewBook(book);
         return book;
     }
 
-    private void assertIsbnIsPresent(String isbn){
-        if (bookRepository.getAllBooks().get(isbn) == null){
+    private void assertIsbnIsPresent(String isbn) {
+        if (bookRepository.getAllBooks().get(isbn) == null) {
             throw new NotFoundException("This ISBN does not match any book");
         }
     }
 
-    private void assertIsbnIsNotUsed(String isbn){
-        if (bookRepository.getAllBooks().get(isbn) != null){
+    private void assertIsbnIsNotUsed(String isbn) {
+        if (bookRepository.getAllBooks().get(isbn) != null) {
             throw new IllegalFieldException("This ISBN is already used");
         }
     }

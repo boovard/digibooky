@@ -9,6 +9,9 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+
 @RequestMapping(path = "/books")
 @RestController
 public class BookController {
@@ -20,6 +23,7 @@ public class BookController {
         this.bookService = bookService;
         this.bookMapper = bookMapper;
     }
+
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
@@ -33,8 +37,21 @@ public class BookController {
 
     @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public BookDto getBook(@PathVariable("isbn") String isbn) {
-        return bookMapper.toDto(bookService.getBookByIsbn(isbn));
+    public List<BookDto> getBooksByIsbn(@PathVariable("isbn") String isbn) {
+        List<BookDto> booksFound = new ArrayList<>();
+        if (isbn.contains(".")) {
+            for (Book book : bookService.getBookByIsbnWithWildCard(isbn)) {
+                booksFound.add(bookMapper.toDto(book));
+            }
+            return booksFound;
+        }
+        booksFound.add(bookMapper.toDto(bookService.getBookByIsbn(isbn)));
+        return booksFound;
     }
 
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public BookDto registerNewBook(BookDto bookDto){
+        return bookMapper.toDto(bookService.registerNewBook(bookMapper.toDomain(bookDto)));
+    }
 }
