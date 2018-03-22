@@ -1,14 +1,12 @@
 package be.thebest.api;
 
-import be.thebest.domain.objects.Book;
-import be.thebest.domain.objects.persons.Member;
-import be.thebest.domain.objects.persons.Person;
+import be.thebest.api.books.BookDto;
 
 import java.time.LocalDate;
 
 public class LendingDto {
-    private Book book;
-    private Member member;
+    private BookDto bookDto;
+    private MemberDto memberDto;
     private LocalDate lendingDate;
     private Long lendingId;
 
@@ -16,13 +14,13 @@ public class LendingDto {
         return new LendingDto();
     }
 
-    public LendingDto withBook(Book book) {
-        this.book = book;
+    public LendingDto withBookDto(BookDto bookDto) {
+        this.bookDto = bookDto;
         return this;
     }
 
-    public LendingDto withMember(Member member) {
-        this.member = member;
+    public LendingDto withMemberDto(MemberDto memberDto) {
+        this.memberDto = memberDto;
         return this;
     }
 
@@ -36,12 +34,12 @@ public class LendingDto {
         return this;
     }
 
-    public Book getBook() {
-        return book;
+    public BookDto getBookDto() {
+        return bookDto;
     }
 
-    public Member getMember() {
-        return member;
+    public MemberDto getMemberDto() {
+        return memberDto;
     }
 
     public LocalDate getLendingDate() {

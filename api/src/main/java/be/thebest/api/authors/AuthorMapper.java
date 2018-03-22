@@ -2,6 +2,9 @@ package be.thebest.api.authors;
 
 import be.thebest.domain.objects.Author;
 
+import javax.inject.Named;
+
+@Named
 public class AuthorMapper {
 
     public AuthorDto toDto(Author author) {
