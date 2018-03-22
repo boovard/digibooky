@@ -33,4 +33,11 @@ public class BookControllerTest {
         testBookController.registerNewBook(mockBookDto);
         Mockito.verify(mockBookService, times(1)).registerNewBook(mockBookMapper.toDomain(mockBookDto));
     }
+
+    @Test
+    public void updateBook_shouldCallServiceUpdateBookMethod() {
+        when(mockBookMapper.toDomain(mockBookDto)).thenReturn(mockBook);
+        testBookController.updateBook(mockBookDto);
+        Mockito.verify(mockBookService, times(1)).updateBook(mockBookMapper.toDomain(mockBookDto));
+    }
 }

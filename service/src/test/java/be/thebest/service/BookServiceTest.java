@@ -23,10 +23,17 @@ public class BookServiceTest {
     }
 
     @Test
-    public void registerNewBook_shouldCallRepositoryRegisterNewBook(){
+    public void registerNewBook_shouldCallTheDomainRegisterNewBookMethod(){
         Book mockBook = mock(Book.class);
         testBookService.registerNewBook(mockBook);
         Mockito.verify(mockBookRepository, times(1)).registerNewBook(mockBook);
+    }
+
+    @Test
+    public void updateBook_shouldCallTheDomainUpdateBookMethod(){
+        Book mockBook = mock(Book.class);
+        testBookService.updateBook(mockBook);
+        Mockito.verify(mockBookRepository, times(1)).updateBook(mockBook);
     }
 
 }
