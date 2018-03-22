@@ -3,6 +3,9 @@ package be.thebest.api.books;
 import be.thebest.api.authors.AuthorMapper;
 import be.thebest.domain.objects.Book;
 
+import javax.inject.Named;
+
+@Named
 public class BookMapper {
 
     private AuthorMapper authorMapper;
