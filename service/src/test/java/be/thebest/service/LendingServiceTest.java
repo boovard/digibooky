@@ -4,6 +4,7 @@ import be.thebest.domain.exception.LendingException;
 import be.thebest.domain.objects.Book;
 import be.thebest.domain.objects.lendings.Lending;
 import be.thebest.domain.objects.lendings.LendingRepository;
+import be.thebest.domain.repositories.BookRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +17,14 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class LendingServiceTest {
     LendingRepository mockLendingRepo;
+    BookRepository mockBookRepo;
     LendingService testService;
 
     @Before
     public void setUp() {
         mockLendingRepo = mock(LendingRepository.class);
-        testService = new LendingService(mockLendingRepo);
+        mockBookRepo = mock(BookRepository.class);
+        testService = new LendingService(mockLendingRepo, mockBookRepo);
     }
 
     @Test

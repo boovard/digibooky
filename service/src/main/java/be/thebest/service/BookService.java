@@ -1,5 +1,7 @@
 package be.thebest.service;
 
+import be.thebest.domain.exception.IllegalFieldException;
+import be.thebest.domain.exception.NotFoundException;
 import be.thebest.domain.objects.Book;
 import be.thebest.domain.repositories.BookRepository;
 
@@ -23,10 +25,30 @@ public class BookService {
     }
 
     public Book getBookByIsbn(String isbn) {
+        assertIsbnIsPresent(isbn);
         return bookRepository.getBookByIsbn(isbn);
     }
 
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildCard) {
         return bookRepository.getBookByIsbnWithWildCard(isbnWithWildCard);
     }
+
+    public Book registerNewBook(Book book) {
+        assertIsbnIsNotUsed(book.getIsbn());
+        bookRepository.registerNewBook(book);
+        return book;
+    }
+
+    private void assertIsbnIsPresent(String isbn) {
+        if (bookRepository.getAllBooks().get(isbn) == null) {
+            throw new NotFoundException("This ISBN does not match any book");
+        }
+    }
+
+    private void assertIsbnIsNotUsed(String isbn) {
+        if (bookRepository.getAllBooks().get(isbn) != null) {
+            throw new IllegalFieldException("This ISBN is already used");
+        }
+    }
+
 }

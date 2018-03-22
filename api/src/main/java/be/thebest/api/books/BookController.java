@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,18 +13,21 @@ import java.util.List;
 @RestController
 public class BookController {
     private BookService bookService;
+    private BookMapper bookMapper;
 
     @Inject
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, BookMapper bookMapper) {
         this.bookService = bookService;
+        this.bookMapper = bookMapper;
     }
+
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getAllBooks() {
         List<BookDto> bookDtos = new ArrayList<>();
         for (Book book : bookService.getAllBooks()) {
-            bookDtos.add(BookDtoMapper.bookMapper(book));
+            bookDtos.add(bookMapper.toDto(book));
         }
         return bookDtos;
     }
@@ -35,12 +37,12 @@ public class BookController {
     public List<BookDto> getBooksByIsbn(@PathVariable("isbn") String isbn) {
         List<BookDto> booksFound = new ArrayList<>();
         if (isbn.contains(".")) {
-            for (Book book: bookService.getBookByIsbnWithWildCard(isbn)) {
-                booksFound.add(BookDtoMapper.bookMapper(book));
+            for (Book book : bookService.getBookByIsbnWithWildCard(isbn)) {
+                booksFound.add(bookMapper.toDto(book));
             }
-             return booksFound;
+            return booksFound;
         }
-        booksFound.add(BookDtoMapper.bookMapper(bookService.getBookByIsbn(isbn)));
+        booksFound.add(bookMapper.toDto(bookService.getBookByIsbn(isbn)));
         return booksFound;
     }
 
