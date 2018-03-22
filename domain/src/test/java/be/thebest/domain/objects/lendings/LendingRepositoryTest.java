@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import static org.mockito.Mockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 public class LendingRepositoryTest {
     private LendingRepository lendingRepository;
@@ -44,6 +45,14 @@ public class LendingRepositoryTest {
         lendingRepository.addLending(testLending);
 
         Assertions.assertThat(testLending.getLendingId()).isEqualTo(lendingRepository.getLendingCounter() - 1);
+    }
+
+    @Test
+    public void removeLending_shouldRemoveLendingFromRepo() {
+        Lending mockLending = mock(Lending.class);
+        lendingRepository.addLending(mockLending);
+        lendingRepository.removeLending(mockLending.getLendingId());
+        Assertions.assertThat(lendingRepository.getLendingRepository()).doesNotContainValue(mockLending);
     }
 
 }
