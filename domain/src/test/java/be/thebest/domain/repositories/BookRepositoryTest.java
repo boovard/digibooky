@@ -20,7 +20,7 @@ public class BookRepositoryTest {
     @Rule
     public ExpectedException expectedBookException = ExpectedException.none();
     private BookRepository testBookRepo;
-    private Book book0, book1, book2, book3, book4, book5, book6, book7;
+    private Book book0, book1, book2, book3, book4, book5, book6, book7, book8, book9;
 
     @Before
     public void setUp() {
@@ -41,6 +41,10 @@ public class BookRepositoryTest {
                 new Author(6, "LastName6", "FirstName6"));
         book7 = new Book("RegexISBN", "Title7",
                 new Author(7, "LastName7", "FirstName7"));
+        book8 = new Book("ISBN5", "JavaScript for Dummies",
+                new Author(6, "Block", "Marie-Lynne"));
+        book9 = new Book("ISBN6", "Harry Potter",
+                new Author(7, "Rowling", "J.K."));
 
         testBookRepo.registerNewBook(book0);
         testBookRepo.registerNewBook(book1);
@@ -50,6 +54,8 @@ public class BookRepositoryTest {
         testBookRepo.registerNewBook(book5);
         testBookRepo.registerNewBook(book6);
         testBookRepo.registerNewBook(book7);
+        testBookRepo.registerNewBook(book8);
+        testBookRepo.registerNewBook(book9);
     }
 
     @Test
@@ -102,4 +108,51 @@ public class BookRepositoryTest {
         testBooks.add(book4);
         assertTrue(testBooks.containsAll(testBookRepo.getBookByIsbnWithWildCard(".....")));
     }
+    /*
+    // Title
+    @Test
+    public void getBookByTitle_whenFullTitleIsProvidedAndCorrect_returnTheBook() {
+        assertEquals(book4, testBookRepo.getBookByTitle("Title4"));
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getBookByTitle_whenTitleIsNotFound_returnNotFoundException() {
+        testBookRepo.getBookByTitle("Unknown Title");
+    }
+
+    @Test
+    public void getBookByTitle_whenProvidedAWildCardForTheFirstCharacter_returnCorrespondingListOfBooks() {
+        List<Book> testBooks = new ArrayList<>();
+        testBooks.add(book5);
+        testBooks.add(book6);
+        assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("."));
+    }
+
+    @Test
+    public void getBookByTitle_whenProvidedAWildCardForTheLastCharacter_returnCorrespondingListOfBooks() {
+        List<Book> testBooks = new ArrayList<>();
+        testBooks.add(book7);
+        assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("RegexISB."));
+    }
+
+    @Test
+    public void getBookByTitle_whenProvidedTwoWildCardsForCharacterInTheMiddle_returnCorrespondingListOfBooks() {
+        List<Book> testBooks = new ArrayList<>();
+        testBooks.add(book5);
+        testBooks.add(book6);
+        assertEquals(testBooks, testBookRepo.getBookByTitleWithWildCard("Wildca...ISBN"));
+    }
+
+    @Test
+    public void getBookByTitle_whenProvidedOnlyWildCards_returnAllBooks() {
+        List<Book> testBooks = new ArrayList<>();
+        testBooks.add(book0);
+        testBooks.add(book1);
+        testBooks.add(book2);
+        testBooks.add(book3);
+        testBooks.add(book4);
+        assertTrue(testBooks.containsAll(testBookRepo.getBookByTitleWithWildCard(".....")));
+    }
+    */
+
 }
