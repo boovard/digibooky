@@ -8,6 +8,9 @@ public class Book {
     private Author author;
     private Boolean availability;
 
+    public Book() {
+    }
+
     public Book(String isbn, String title, Author author) {
         this.isbn = isbn;
         this.title = title;
@@ -17,6 +20,10 @@ public class Book {
 
     public String getIsbn() {
         return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -58,6 +65,48 @@ public class Book {
     public int hashCode() {
 
         return Objects.hash(isbn, title, author);
+    }
+
+    public static class BookBuilder{
+        private String isbn;
+        private String title;
+        private Author author;
+        private Boolean availability;
+
+        private BookBuilder(){}
+
+        public static BookBuilder bookBuilder(){
+            return new BookBuilder();
+        }
+
+        public Book build(){
+            Book book = new Book();
+            book.setIsbn(isbn);
+            book.setTitle(title);
+            book.setAuthor(author);
+            book.setAvailability(availability);
+            return book;
+        }
+
+        public BookBuilder withIsbn(String isbn){
+            this.isbn = isbn;
+            return this;
+        }
+
+        public BookBuilder withTitle(String title){
+            this.title = title;
+            return this;
+        }
+
+        public BookBuilder withAuthor(Author author){
+            this.author = author;
+            return this;
+        }
+
+        public BookBuilder withAvailability(Boolean availability){
+            this.availability = availability;
+            return this;
+        }
     }
 
 }

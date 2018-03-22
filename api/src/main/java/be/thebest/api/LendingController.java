@@ -24,13 +24,13 @@ public class LendingController {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public LendingDto createLending(LendingDto lendingDto) {
+    public LendingDto createLending(@RequestBody LendingDto lendingDto) {
         return lendingMapper.toDto(lendingService.addLending(lendingMapper.toDomain(lendingDto)));
     }
 
     @DeleteMapping(path = "/lendingId", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ReturnObjectDto returnBook(Long lendingId) {
+    public ReturnObjectDto returnBook(@RequestBody Long lendingId) {
         return returnObjectMapper.toDto(lendingService.returnBook(lendingId));
     }
 }
