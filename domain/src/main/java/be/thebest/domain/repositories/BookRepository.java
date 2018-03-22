@@ -79,7 +79,7 @@ public class BookRepository {
     }
 
     // Title
-    public Book getBookByAuthor(String title) {
+    public Book getBookByTitle(String title) {
         if (books != null) {
             for (String isbn : books.keySet()) {
                 if (books.get(isbn).getTitle().equals(title)) {
