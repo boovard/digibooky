@@ -63,7 +63,7 @@ public class BookRepository {
     }
 
     public Book getBookByIsbn(String isbn) {
-        return books.get(isbn);
+        return getAllAvailableBooks().get(isbn);
     }
 
     public List<Book> getBookByIsbnWithWildCard(String isbnWithWildcard) {
@@ -72,10 +72,10 @@ public class BookRepository {
 
         Pattern p = Pattern.compile(isbnRegex);
 
-        for (String isbn : books.keySet()) {
+        for (String isbn : getAllAvailableBooks().keySet()) {
             Matcher m = p.matcher(isbn);
             if (m.matches()) {
-                booksFound.add(books.get(isbn));
+                booksFound.add(getAllAvailableBooks().get(isbn));
             }
         }
         return booksFound;
@@ -92,6 +92,12 @@ public class BookRepository {
             }
         }
         return regexExpression + '$';
+    }
+
+
+//    DO NOT USE OUTSIDE OF TESTS
+    public void clearBookRepository(){
+        books.clear();
     }
 
     // Title

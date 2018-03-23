@@ -4,6 +4,7 @@ import be.thebest.domain.exception.LendingException;
 import be.thebest.domain.objects.Book;
 import be.thebest.domain.objects.lendings.Lending;
 import be.thebest.domain.objects.lendings.LendingRepository;
+import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.repositories.BookRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -14,7 +15,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -23,14 +23,16 @@ public class LendingServiceTest {
     LendingRepository mockLendingRepo;
     BookRepository mockBookRepo;
     LendingService testService;
-    Map<Long, Lending> testMap;
+    Map<Long, Lending> testLendingMap;
+    Map<Book, LocalDate> testLentBooksMap;
 
     @Before
     public void setUp() {
         mockLendingRepo = mock(LendingRepository.class);
         mockBookRepo = mock(BookRepository.class);
         testService = new LendingService(mockLendingRepo, mockBookRepo);
-        testMap = new HashMap<>();
+        testLendingMap = new HashMap<>();
+        testLentBooksMap = new HashMap<>();
 
     }
 
@@ -59,12 +61,12 @@ public class LendingServiceTest {
         Lending firstMockLending = mock(Lending.class);
         Lending secondMockLending = mock(Lending.class);
         when(firstMockLending.getLendingId()).thenReturn(0L);
-        when(mockLendingRepo.getLendingRepository()).thenReturn(testMap);
+        when(mockLendingRepo.getLendingRepository()).thenReturn(testLendingMap);
         when(mockLendingRepo.getLending(firstMockLending.getLendingId())).thenReturn(firstMockLending);
         when(firstMockLending.getDueDate(Lending.NORMAL_LENDING_PERIOD))
                 .thenReturn(LocalDate.now());
-        testMap.put(0L, firstMockLending);
-        testMap.put(1L, secondMockLending);
+        testLendingMap.put(0L, firstMockLending);
+        testLendingMap.put(1L, secondMockLending);
         testService.addLending(firstMockLending);
 
         testService.returnBook(firstMockLending.getLendingId());
@@ -76,10 +78,10 @@ public class LendingServiceTest {
     public void returnBook_happyPath_shouldReturnReturnObjectWithReturnCode1() {
         Lending firstMockLending = mock(Lending.class);
         Lending secondMockLending = mock(Lending.class);
-        testMap.put(0L, firstMockLending);
-        testMap.put(1L, secondMockLending);
+        testLendingMap.put(0L, firstMockLending);
+        testLendingMap.put(1L, secondMockLending);
         when(firstMockLending.getLendingId()).thenReturn(0L);
-        when(mockLendingRepo.getLendingRepository()).thenReturn(testMap);
+        when(mockLendingRepo.getLendingRepository()).thenReturn(testLendingMap);
         when(mockLendingRepo.getLending(firstMockLending.getLendingId())).thenReturn(firstMockLending);
         when(firstMockLending.getDueDate(Lending.NORMAL_LENDING_PERIOD))
                 .thenReturn(LocalDate.now());
@@ -92,7 +94,7 @@ public class LendingServiceTest {
     public void returnBook_whenLendingIdIsFalse_shouldReturnReturnObjectWithReturnCode3() {
         Lending firstMockLending = mock(Lending.class);
         when(firstMockLending.getLendingId()).thenReturn(0L);
-        when(mockLendingRepo.getLendingRepository()).thenReturn(testMap);
+        when(mockLendingRepo.getLendingRepository()).thenReturn(testLendingMap);
         when(mockLendingRepo.getLending(firstMockLending.getLendingId())).thenReturn(firstMockLending);
         when(firstMockLending.getDueDate(Lending.NORMAL_LENDING_PERIOD))
                 .thenReturn(LocalDate.now().plusDays(1));
@@ -104,15 +106,25 @@ public class LendingServiceTest {
     public void returnBook_whenBookIsLate_shouldReturnReturnObjectWithReturnCode2() {
         Lending firstMockLending = mock(Lending.class);
         Lending secondMockLending = mock(Lending.class);
-        testMap.put(0L, firstMockLending);
-        testMap.put(1L, secondMockLending);
+        testLendingMap.put(0L, firstMockLending);
+        testLendingMap.put(1L, secondMockLending);
         when(firstMockLending.getLendingId()).thenReturn(0L);
-        when(mockLendingRepo.getLendingRepository()).thenReturn(testMap);
+        when(mockLendingRepo.getLendingRepository()).thenReturn(testLendingMap);
         when(mockLendingRepo.getLending(firstMockLending.getLendingId())).thenReturn(firstMockLending);
         when(firstMockLending.getDueDate(Lending.NORMAL_LENDING_PERIOD))
                 .thenReturn(LocalDate.now().minusDays(1));
         testService.addLending(firstMockLending);
 
         Assertions.assertThat(testService.returnBook(firstMockLending.getLendingId()).getReturnCode()).isEqualTo(2);
+    }
+
+    @Test
+    public void getBooksByMember_shouldCallRepoMethod() {
+        Member mockMember = mock(Member.class);
+        when(mockLendingRepo.getLentBooksByMember(mockMember)).thenReturn(testLentBooksMap);
+
+        testService.getLentBooksByMember(mockMember);
+
+        Mockito.verify(mockLendingRepo, times(1)).getLentBooksByMember(mockMember);
     }
 }

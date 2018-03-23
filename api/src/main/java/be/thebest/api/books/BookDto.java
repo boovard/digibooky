@@ -7,6 +7,7 @@ public class BookDto {
     private String isbn;
     private String title;
     private AuthorDto authorDto;
+    private Boolean availability;
 
     public static BookDto bookDto(){
         return new BookDto();
@@ -30,6 +31,11 @@ public class BookDto {
         return this;
     }
 
+    public BookDto withAvailability(Boolean availability){
+        this.availability = availability;
+        return this;
+    }
+
     public AuthorDto getAuthorDto() {
         return authorDto;
     }
@@ -39,5 +45,8 @@ public class BookDto {
         return this;
     }
 
+    public Boolean getAvailability() {
+        return availability;
+    }
 }
 

@@ -28,11 +28,9 @@ public class PersonService {
         return repository.getPersonRepository();
     }
 
-    public List<Member> getMembers() {
+    public Map<UUID, Member> getMembers() {
         verifyPermission();
-        return Collections.unmodifiableList(repository.getMembersFromRepository().entrySet().stream()
-                .map(person -> person.getValue())
-                .collect(Collectors.toList()));
+        return Collections.unmodifiableMap(repository.getMembersFromRepository());
     }
 
     public Member addMember(Member member) {

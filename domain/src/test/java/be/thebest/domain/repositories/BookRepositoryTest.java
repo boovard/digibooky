@@ -56,22 +56,10 @@ public class BookRepositoryTest {
         testBookRepo.registerNewBook(book8);
     }
 
-//    @Test
-//    public void getBook_whenBookNotFound_returnStringMessage() {
-//        expectedBookException.expect(NotFoundException.class);
-//        expectedBookException.expectMessage("Book not found. Check ISBN again.");
-//        testBookRepo.getBookByIsbn("Unknown ISBN");
-//    }
-
     @Test
     public void getBookByIsbn_whenFullIsbnIsProvidedAndCorrect_returnTheBook() {
         assertEquals(book4, testBookRepo.getBookByIsbn("ISBN4"));
     }
-
-//    @Test(expected = NotFoundException.class)
-//    public void getBookByIsbn_whenIsbnIsNotFound_returnNotFoundException() {
-//        testBookRepo.getBookByIsbn("Unknown ISBN");
-//    }
 
     @Test
     public void getBookByIsbn_whenProvidedAWildCardForTheFirstCharacter_returnCorrespondingListOfBooks() {

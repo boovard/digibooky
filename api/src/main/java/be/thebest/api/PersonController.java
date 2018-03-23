@@ -37,26 +37,26 @@ public class PersonController {
     @GetMapping(path = "/members", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<MemberDto> getMembers() {
-        return personService.getMembers().stream()
+        return personService.getMembers().values().stream()
                 .map(memberMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping(path = "/addMember", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public MemberDto addMember(MemberDto memberDto) {
+    public MemberDto addMember(@RequestBody MemberDto memberDto) {
         return memberMapper.toDto(personService.addMember(memberMapper.toDomain(memberDto)));
     }
 
     @PostMapping(path = "/addAdmin", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public AdminDto addAdmin(AdminDto adminDto) {
+    public AdminDto addAdmin(@RequestBody AdminDto adminDto) {
         return adminMapper.toDto(personService.addAdmin(adminMapper.toDomain(adminDto)));
     }
 
     @PostMapping(path = "/addLibrarian", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public LibrarianDto addLibrarian(LibrarianDto librarianDto){
+    public LibrarianDto addLibrarian(@RequestBody LibrarianDto librarianDto){
         return librarianMapper.toDto(personService.addLibrarian(librarianMapper.toDomain(librarianDto)));
     }
 }

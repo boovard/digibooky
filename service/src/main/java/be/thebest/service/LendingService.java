@@ -2,14 +2,17 @@ package be.thebest.service;
 
 import be.thebest.domain.exception.LendingException;
 import be.thebest.domain.exception.NotFoundException;
+import be.thebest.domain.objects.Book;
 import be.thebest.domain.objects.lendings.Lending;
 import be.thebest.domain.objects.lendings.LendingRepository;
+import be.thebest.domain.objects.persons.Member;
 import be.thebest.domain.repositories.BookRepository;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.time.LocalDate;
+import java.util.Map;
 
 @Named
 public class LendingService {
@@ -40,5 +43,10 @@ public class LendingService {
         }
         lendingRepository.removeLending(lendingId);
         return ReturnObject.returnObject(ReturnObject.OK);
+    }
+
+    public Map<Book, LocalDate> getLentBooksByMember(Member member) {
+        return lendingRepository.getLentBooksByMember(member);
+
     }
 }

@@ -18,11 +18,17 @@ public class BookMapper {
         return BookDto.bookDto()
                 .withIsbn(book.getIsbn())
                 .withTitle(book.getTitle())
-                .withAuthorDto(authorMapper.toDto(book.getAuthor()));
+                .withAuthorDto(authorMapper.toDto(book.getAuthor()))
+                .withAvailability(book.getAvailability());
     }
 
     public Book toDomain(BookDto bookDto) {
-        return new Book(bookDto.getIsbn(), bookDto.getTitle(), authorMapper.toDomain(bookDto.getAuthorDto()));
+        return Book.BookBuilder.bookBuilder()
+                .withIsbn(bookDto.getIsbn())
+                .withTitle(bookDto.getTitle())
+                .withAuthor(authorMapper.toDomain(bookDto.getAuthorDto()))
+                .withAvailability(bookDto.getAvailability())
+                .build();
     }
 
 

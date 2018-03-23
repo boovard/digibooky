@@ -67,13 +67,25 @@ public class BookController {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public BookDto registerNewBook(BookDto bookDto){
+    public BookDto registerNewBook(@RequestBody BookDto bookDto){
         return bookMapper.toDto(bookService.registerNewBook(bookMapper.toDomain(bookDto)));
     }
 
     @PutMapping(path = "/{isbn}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public BookDto updateBook(BookDto bookDto){
+    public BookDto updateBook(@RequestBody BookDto bookDto){
         return bookMapper.toDto(bookService.updateBook(bookMapper.toDomain(bookDto)));
+    }
+
+    @DeleteMapping(path = "/{isbn}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBook(@PathVariable("isbn") String isbn) {
+        bookService.deleteBook(isbn);
+    }
+
+    @PutMapping(path = "/{isbn}")
+    @ResponseStatus(HttpStatus.OK)
+    public BookDto restoreBook(@RequestBody String isbn){
+        return bookMapper.toDto(bookService.restoreBook(isbn));
     }
 }

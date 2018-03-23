@@ -62,6 +62,16 @@ public class BookService {
         return bookToUpdate;
     }
 
+    public void deleteBook(String isbn){
+        assertIsbnIsPresent(isbn);
+        bookRepository.deleteBook(isbn);
+    }
+
+    public Book restoreBook(String isbn){
+        assertIsbnIsPresent(isbn);
+        return bookRepository.restoreBook(isbn);
+    }
+
     private void assertIsbnIsPresent(String isbn) {
         if (bookRepository.getAllBooks().get(isbn) == null) {
             throw new NotFoundException("This ISBN does not match any book");
