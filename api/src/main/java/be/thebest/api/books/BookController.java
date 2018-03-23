@@ -71,7 +71,7 @@ public class BookController {
         return bookMapper.toDto(bookService.registerNewBook(bookMapper.toDomain(bookDto)));
     }
 
-    @PutMapping(path = "/{isbn}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public BookDto updateBook(@RequestBody BookDto bookDto){
         return bookMapper.toDto(bookService.updateBook(bookMapper.toDomain(bookDto)));
