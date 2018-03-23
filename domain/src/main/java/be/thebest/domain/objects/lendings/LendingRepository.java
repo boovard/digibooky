@@ -10,6 +10,7 @@ import javax.inject.Named;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -49,6 +50,12 @@ public class LendingRepository {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         return filteredLendings.values().stream()
                 .collect(Collectors.toMap(Lending::getBook, lending -> lending.getDueDate(Lending.NORMAL_LENDING_PERIOD)));
+    }
+
+    public List<Lending> getOverdueBooks() {
+        return getLendingRepository().values().stream()
+                .filter(lending -> lending.getDueDate(Lending.NORMAL_LENDING_PERIOD).isBefore(LocalDate.now()))
+                .collect(Collectors.toList());
     }
 
     public Lending getLending(Long lendingId) {

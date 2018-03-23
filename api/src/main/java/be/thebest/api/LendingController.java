@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -40,17 +41,26 @@ public class LendingController {
         return lendingMapper.toDto(lendingService.addLending(lendingMapper.toDomain(lendingDto)));
     }
 
-    @DeleteMapping(path = "/lendingId", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @DeleteMapping(path = "/{lendingId}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ReturnObjectDto returnBook(@PathVariable Long lendingId) {
+    public ReturnObjectDto returnBook(@PathVariable("lendingId") Long lendingId) {
         return returnObjectMapper.toDto(lendingService.returnBook(lendingId));
     }
 
-    @GetMapping(path = "/memberId")
+    @GetMapping(path = "/{memberId}")
     @ResponseStatus(HttpStatus.OK)
-    public Map<BookDto, String> getLentBooksByMember(@PathVariable UUID memberId) {
+    public Map<BookDto, String> getLentBooksByMember(@PathVariable("memberId") UUID memberId) {
         Member member = personService.getMembers().get(memberId);
         return lendingService.getLentBooksByMember(member).entrySet().stream()
                 .collect(Collectors.toMap(entry -> bookMapper.toDto(entry.getKey()), entry -> entry.getValue().toString()));
+    }
+
+    @GetMapping(path = "/overdue")
+    @ResponseStatus(HttpStatus.OK)
+    public List<LendingDto> getOverdueBooks() {
+        //TODO LendingDto shows lending date; but this list should show the due date
+        return lendingService.getOverdueBooks().stream()
+                .map(lending -> lendingMapper.toDto(lending))
+                .collect(Collectors.toList());
     }
 }
