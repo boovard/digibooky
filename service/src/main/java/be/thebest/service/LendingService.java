@@ -12,6 +12,7 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 @Named
@@ -48,5 +49,9 @@ public class LendingService {
     public Map<Book, LocalDate> getLentBooksByMember(Member member) {
         return lendingRepository.getLentBooksByMember(member);
 
+    }
+
+    public List<Lending> getOverdueBooks() {
+        return lendingRepository.getOverdueBooks();
     }
 }

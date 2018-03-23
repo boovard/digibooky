@@ -36,7 +36,7 @@ public class BookController {
     }
 
     // ISBN
-    @GetMapping(path = "/{isbn}", produces = "application/json")
+    @GetMapping(path = "/searchOnIsbn/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getBooksByIsbn(@PathVariable("isbn") String isbn) {
         List<BookDto> booksFound = new ArrayList<>();
@@ -51,7 +51,7 @@ public class BookController {
     }
 
     // Title
-    @GetMapping(path = "/{title}", produces = "application/json")
+    @GetMapping(path = "/searchOnTitle/{title}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getBooksByTitle(@PathVariable("title") String title) {
         List<BookDto> booksFound = new ArrayList<>();
@@ -71,7 +71,7 @@ public class BookController {
         return bookMapper.toDto(bookService.registerNewBook(bookMapper.toDomain(bookDto)));
     }
 
-    @PutMapping(path = "/{isbn}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public BookDto updateBook(@RequestBody BookDto bookDto){
         return bookMapper.toDto(bookService.updateBook(bookMapper.toDomain(bookDto)));

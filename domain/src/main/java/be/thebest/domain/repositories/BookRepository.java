@@ -18,14 +18,14 @@ public class BookRepository {
 
     @Inject
     public BookRepository() {
-        Book book1 = new Book("ISBN1", "History for dummies",
-                new Author(1, "Van Reeth", "Leander"));
-        Book book2 = new Book("ISBN2", "Geography for dummies",
-                new Author(2, "Bouvy", "Simon"));
-        Book book3 = new Book("ISBN3", "Javascript for dummies",
-                new Author(3, "Block", "Marie-Lynne"));
-        Book book4 = new Book("ISBN4", "Biology for dummmies",
-                new Author(4, "Hermans", "Dirk"));
+        Book book1 = new Book("ISBN1", "How to be The Smartest Guy in the Room?",
+                new Author(1, "Delestinne", "Niels"));
+        Book book2 = new Book("ISBN2", "However",
+                new Author(2, "Delestinne", "Niels"));
+        Book book3 = new Book("ISBN3", "Retrospective Meetings for Dummies",
+                new Author(3, "Van Bets", "Reinout"));
+        Book book4 = new Book("ISBN4", "Post-Its for Agile Practices",
+                new Author(4, "Van Bets", "Reinout"));
         this.books = new HashMap<>();
         books.put(book1.getIsbn(), book1);
         books.put(book2.getIsbn(), book2);
